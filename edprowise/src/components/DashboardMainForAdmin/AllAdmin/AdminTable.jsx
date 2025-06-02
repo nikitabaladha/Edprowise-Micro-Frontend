@@ -14,7 +14,11 @@ const SubscriptionTable = () => {
 
   const fetchAdminData = async () => {
     try {
-      const response = await getAPI(`/get-all-admin`, {}, true);
+      const response = await getAPI(
+        `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/get-all-admin`,
+        {},
+        true
+      );
       if (
         !response.hasError &&
         response.data &&

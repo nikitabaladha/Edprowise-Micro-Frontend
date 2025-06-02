@@ -45,7 +45,7 @@ const Signup = () => {
 
     try {
       const response = await postAPI(
-        "/admin-signup",
+        `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/admin-signup`,
         {
           firstName: formData.firstName,
           lastName: formData.lastName,

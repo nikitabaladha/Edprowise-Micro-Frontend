@@ -29,7 +29,11 @@ const ViewAdminProfile = () => {
 
   const fetchProfileData = async () => {
     try {
-      const response = await getAPI(`/edprowise-profile`, {}, true);
+      const response = await getAPI(
+        `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/edprowise-profile`,
+        {},
+        true
+      );
 
       if (!response.hasError && response.data && response.data.data) {
         setAdminProfile(response.data.data);
@@ -90,7 +94,7 @@ const ViewAdminProfile = () => {
                     <div className="mb-3 d-flex justify-content-center">
                       <div className="rounded bg-light d-flex align-items-center justify-content-center">
                         <img
-                          src={`${process.env.REACT_APP_API_URL_FOR_IMAGE}${adminProfile?.edprowiseProfile}`}
+                          src={`${process.env.REACT_APP_API_URL_FOR_USER_IMAGE}${adminProfile?.edprowiseProfile}`}
                           alt={`${adminProfile?.companyName} Profile`}
                           className="avatar-md"
                           style={{

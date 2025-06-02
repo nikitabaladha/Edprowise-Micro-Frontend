@@ -59,7 +59,7 @@ const Signup = () => {
 
     try {
       const response = await postAPI(
-        "/user-signup",
+        `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/user-signup`,
         {
           userId: formData.userId,
           password: formData.password,

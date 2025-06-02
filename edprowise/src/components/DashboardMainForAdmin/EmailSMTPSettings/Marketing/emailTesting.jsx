@@ -42,7 +42,11 @@ const MarketingEmail = () => {
   useEffect(() => {
     const fetchInitialData = async () => {
       try {
-        const emailResponse = await getAPI("/get-all-emails", {}, true);
+        const emailResponse = await getAPI(
+          `${process.env.REACT_APP_EMAIL_SERVICE}/get-all-emails`,
+          {},
+          true
+        );
         if (!emailResponse.hasError) {
           const options = emailResponse.data.data.map((email) => ({
             label: email,
@@ -246,7 +250,7 @@ const MarketingEmail = () => {
       });
 
       const response = await postAPI(
-        "/send-email",
+        `${process.env.REACT_APP_EMAIL_SERVICE}/send-email`,
         formDataToSend,
         { "Content-Type": "multipart/form-data" },
         true // <- this must be the fourth argument

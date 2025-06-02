@@ -26,7 +26,11 @@ const SMTPHostSettings = () => {
   useEffect(() => {
     const fetchSettings = async () => {
       try {
-        const response = await getAPI("/get-smtp-email-settings", {}, true);
+        const response = await getAPI(
+          `${process.env.REACT_APP_EMAIL_SERVICE}/get-smtp-email-settings`,
+          {},
+          true
+        );
 
         if (!response.hasError) {
           setFormData({
@@ -52,7 +56,7 @@ const SMTPHostSettings = () => {
     e.preventDefault();
     try {
       const response = await postAPI(
-        "/post-smtp-email-settings",
+        `${process.env.REACT_APP_EMAIL_SERVICE}/post-smtp-email-settings`,
         formData,
         true
       );
@@ -79,7 +83,7 @@ const SMTPHostSettings = () => {
 
     try {
       const response = await postAPI(
-        "/test-smtp-email-settings",
+        "email/test-smtp-email-settings",
         { email: testEmail },
         true
       );

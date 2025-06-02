@@ -51,7 +51,11 @@ const UserLogin = () => {
     setSending(true);
 
     try {
-      const response = await postAPI("/user-login", formData, false);
+      const response = await postAPI(
+        `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/user-login`,
+        formData,
+        false
+      );
 
       if (!response.hasError) {
         const { token, userDetails } = response.data;

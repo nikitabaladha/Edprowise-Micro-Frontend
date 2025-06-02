@@ -54,7 +54,11 @@ const UpdateAdminProfile = () => {
 
   const fetchProfileData = async () => {
     try {
-      const response = await getAPI(`/edprowise-profile`, {}, true);
+      const response = await getAPI(
+        `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/edprowise-profile`,
+        {},
+        true
+      );
 
       if (!response.hasError && response.data && response.data.data) {
         const profileData = response.data.data;
@@ -140,7 +144,7 @@ const UpdateAdminProfile = () => {
       });
 
       const response = await putAPI(
-        `/edprowise-profile/${profileId}`,
+        `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/edprowise-profile/${profileId}`,
         formDataToSend,
         {
           "Content-Type": "multipart/form-data",
@@ -259,7 +263,7 @@ const UpdateAdminProfile = () => {
                           />
                         ) : formData.edprowiseProfile ? (
                           <img
-                            src={`${process.env.REACT_APP_API_URL_FOR_IMAGE}${formData?.edprowiseProfile}`}
+                            src={`${process.env.REACT_APP_API_URL_FOR_USER_IMAGE}${formData?.edprowiseProfile}`}
                             alt={`${formData?.companyName} Profile`}
                             className="avatar-md"
                             style={{

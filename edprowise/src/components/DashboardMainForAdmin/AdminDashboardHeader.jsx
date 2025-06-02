@@ -71,7 +71,11 @@ const AdminDashboardHeader = () => {
 
   const fetchEdprowiseProfileData = async () => {
     try {
-      const response = await getAPI(`/edprowise-profile`, {}, true);
+      const response = await getAPI(
+        `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/edprowise-profile`,
+        {},
+        true
+      );
 
       if (!response.hasError && response.data && response.data.data) {
         setAdminProfile(response.data.data);
@@ -449,7 +453,7 @@ const AdminDashboardHeader = () => {
                   <span className="d-flex align-items-center">
                     {/* here i want to show image  */}
                     <img
-                      src={`${process.env.REACT_APP_API_URL_FOR_IMAGE}${adminProfile?.edprowiseProfile}`}
+                      src={`${process.env.REACT_APP_API_URL_FOR_USER_IMAGE}${adminProfile?.edprowiseProfile}`}
                       className="rounded-circle"
                       alt="logo light"
                       style={{ objectFit: "cover" }}

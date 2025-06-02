@@ -4,25 +4,29 @@ import deleteAPI from "../api/deleteAPI.jsx";
 
 const DELETE_CONFIG = {
   school: {
-    getEndpoint: (id) => `/school/${id}`,
+    getEndpoint: (id) =>
+      `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/school/${id}`,
     successMessage: "School successfully deleted!",
     errorMessage: "Failed to delete school.",
     idKey: "schoolId",
   },
   admin: {
-    getEndpoint: (id) => `/delete-admin/${id}`,
+    getEndpoint: (id) =>
+      `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/delete-admin/${id}`,
     successMessage: "Admin successfully deleted!",
     errorMessage: "Failed to delete Admin.",
     idKey: "adminId",
   },
   seller: {
-    getEndpoint: (id) => `/seller-profile/${id}`,
+    getEndpoint: (id) =>
+      `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/seller-profile/${id}`,
     successMessage: "Seller successfully deleted!",
     errorMessage: "Failed to delete seller.",
     idKey: "sellerId",
   },
   user: {
-    getEndpoint: (id) => `/user/${id}`,
+    getEndpoint: (id) =>
+      `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/user/${id}`,
     successMessage: "User successfully deleted!",
     errorMessage: "Failed to delete user.",
     idKey: "userId",

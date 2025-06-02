@@ -34,7 +34,11 @@ const AdminLogin = () => {
     setSending(true);
 
     try {
-      const response = await postAPI("/admin-login", formData, false);
+      const response = await postAPI(
+        `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/admin-login`,
+        formData,
+        false
+      );
 
       if (!response.hasError) {
         const { token, userDetails } = response.data;

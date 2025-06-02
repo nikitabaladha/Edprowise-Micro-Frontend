@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+
 const UpdateAdmin = () => {
   const location = useLocation();
   const admin = location.state?.admin;
@@ -64,7 +65,7 @@ const UpdateAdmin = () => {
 
     try {
       const response = await putAPI(
-        `/update-admin/${adminId}`,
+        `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/update-admin/${adminId}`,
         formDataToSend,
         true
       );

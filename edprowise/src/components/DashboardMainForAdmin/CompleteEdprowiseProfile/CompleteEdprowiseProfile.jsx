@@ -93,7 +93,7 @@ const CompleteEdprowiseProfile = () => {
 
     try {
       const response = await postAPI(
-        "/edprowise-profile",
+        `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/edprowise-profile`,
         data,
         { "Content-Type": "multipart/form-data" },
         true
@@ -125,7 +125,9 @@ const CompleteEdprowiseProfile = () => {
         });
         document.getElementById("edprowiseProfile").value = "";
 
-        const updatedUserResponse = await getAPI(`/get-admin-by-id/${userId}`);
+        const updatedUserResponse = await getAPI(
+          `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/get-admin-by-id/${userId}`
+        );
 
         if (!updatedUserResponse.hasError) {
           localStorage.setItem(
