@@ -1,0 +1,29 @@
+/* Login Css */
+.login-logo-font {
+  font-family: "Poppins", sans-serif;
+  color: #ffc801;
+  font-size: 40px;
+}
+
+.logo-font {
+  font-family: "Poppins", sans-serif;
+  font-style: italic;
+  color: white;
+  text-decoration: none;
+  font-size: large;
+}
+
+/* Heading of Form */
+
+.custom-heading-font {
+  font-size: 25px;
+}
+
+.custom-heading-padding {
+  padding-top: 0px;
+}
+
+.quill-editor-custom .ql-editor {
+  min-height: 150px;
+  max-height: 300px;
+}
