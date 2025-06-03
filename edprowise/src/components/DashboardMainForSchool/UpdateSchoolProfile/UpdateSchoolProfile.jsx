@@ -37,7 +37,6 @@ const UpdateSchoolProfile = () => {
     numberOfStudents: "",
     principalName: "",
     schoolAlternateContactNo: "",
-
     country: "",
     state: "",
     city: "",
@@ -110,7 +109,11 @@ const UpdateSchoolProfile = () => {
 
   const fetchSchoolData = async () => {
     try {
-      const response = await getAPI(`/school-profile/${schoolId}`, {}, true);
+      const response = await getAPI(
+        `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/school-profile/${schoolId}`,
+        {},
+        true
+      );
 
       if (!response.hasError && response.data && response.data.data) {
         const schoolData = response.data.data;
@@ -129,7 +132,6 @@ const UpdateSchoolProfile = () => {
           schoolMobileNo: schoolData.schoolMobileNo,
           schoolEmail: schoolData.schoolEmail,
           schoolAddress: schoolData.schoolAddress,
-
           affiliationUpto: schoolData.affiliationUpto,
           panNo: schoolData.panNo,
           profileImage: schoolData.profileImage,
@@ -138,18 +140,15 @@ const UpdateSchoolProfile = () => {
           landMark: schoolData.landMark,
           schoolPincode: schoolData.schoolPincode,
           deliveryAddress: schoolData.deliveryAddress,
-
           deliveryLandMark: schoolData.deliveryLandMark,
           deliveryPincode: schoolData.deliveryPincode,
           contactPersonName: schoolData.contactPersonName,
           numberOfStudents: schoolData.numberOfStudents,
           principalName: schoolData.principalName,
           schoolAlternateContactNo: schoolData.schoolAlternateContactNo,
-
           country: schoolData.country,
           state: schoolData.state,
           city: schoolData.city,
-
           deliveryCountry: schoolData.deliveryCountry,
           deliveryState: schoolData.deliveryState,
           deliveryCity: schoolData.deliveryCity,
@@ -158,17 +157,17 @@ const UpdateSchoolProfile = () => {
         // Set previews for existing files
         if (schoolData.profileImage) {
           setPreviewProfileImage(
-            `${process.env.REACT_APP_API_URL_FOR_IMAGE}${schoolData.profileImage}`
+            `${process.env.REACT_APP_API_URL_FOR_USER_IMAGE}${schoolData.profileImage}`
           );
         }
         if (schoolData.affiliationCertificate) {
           setPreviewAffiliationCertificate(
-            `${process.env.REACT_APP_API_URL_FOR_IMAGE}${schoolData.affiliationCertificate}`
+            `${process.env.REACT_APP_API_URL_FOR_USER_IMAGE}${schoolData.affiliationCertificate}`
           );
         }
         if (schoolData.panFile) {
           setPreviewPanFile(
-            `${process.env.REACT_APP_API_URL_FOR_IMAGE}${schoolData.panFile}`
+            `${process.env.REACT_APP_API_URL_FOR_USER_IMAGE}${schoolData.panFile}`
           );
         }
       } else {
@@ -283,7 +282,7 @@ const UpdateSchoolProfile = () => {
 
     try {
       const response = await putAPI(
-        `/school-profile/${school.schoolId}`,
+        `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/school-profile/${school.schoolId}`,
         formDataToSend,
         {
           "Content-Type": "multipart/form-data",
@@ -306,14 +305,12 @@ const UpdateSchoolProfile = () => {
           landMark: "",
           schoolPincode: "",
           deliveryAddress: "",
-
           deliveryLandMark: "",
           deliveryPincode: "",
           contactPersonName: "",
           numberOfStudents: "",
           principalName: "",
           schoolAlternateContactNo: "",
-
           country: "",
           state: "",
           city: "",
@@ -501,7 +498,8 @@ const UpdateSchoolProfile = () => {
                             id="principalName"
                             name="principalName"
                             className="form-control"
-                            value={formData.principalName || "Not Provided"}
+                            value={formData.principalName}
+                            placeholder="Not Provided"
                             onChange={handleChange}
                           />
                         </div>
@@ -534,7 +532,8 @@ const UpdateSchoolProfile = () => {
                             id="contactPersonName"
                             name="contactPersonName"
                             className="form-control"
-                            value={formData.contactPersonName || "Not Provided"}
+                            value={formData.contactPersonName}
+                            placeholder="Not Provided"
                             onChange={handleChange}
                           />
                         </div>
@@ -564,10 +563,8 @@ const UpdateSchoolProfile = () => {
                             id="mobileNo"
                             name="schoolAlternateContactNo"
                             className="form-control"
-                            value={
-                              formData.schoolAlternateContactNo ||
-                              "Not Provided"
-                            }
+                            value={formData.schoolAlternateContactNo}
+                            placeholder="Not Provided"
                             onChange={handleChange}
                           />
                         </div>

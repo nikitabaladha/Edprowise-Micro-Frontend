@@ -94,7 +94,7 @@ const CompleteSchoolProfile = () => {
 
     try {
       const response = await postAPI(
-        `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/send-otp-email-verification`,
+        `${process.env.REACT_APP_EMAIL_SERVICE}/send-otp-email-verification`,
         {
           email: formData.schoolEmail,
         }
@@ -104,13 +104,9 @@ const CompleteSchoolProfile = () => {
 
       if (!response.data.hasError) {
         setEmailVerificationState("pending");
-
         setOtpData((prev) => ({ ...prev, email: formData.schoolEmail }));
-
         setIsModalOpen(true);
-
         setTimer(60);
-
         toast.success("OTP sent to your email!");
       } else {
         toast.error("Failed to send OTP");
@@ -118,7 +114,7 @@ const CompleteSchoolProfile = () => {
     } catch (error) {
       toast.error(error.response?.data?.message || "Failed to send OTP");
     } finally {
-      setSending(false); // Ensure state is reset no matter what
+      setSending(false);
     }
   };
 
@@ -127,21 +123,17 @@ const CompleteSchoolProfile = () => {
       setVerifyingOTP(true);
 
       const response = await postAPI(
-        "${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/verify-email-code",
+        `${process.env.REACT_APP_EMAIL_SERVICE}/verify-email-code`,
         {
           email: otpData.email,
-
           verificationCode: otpData.otp,
         }
       );
 
       if (!response.data.hasError) {
         setEmailVerificationState("verified");
-
         setIsVerificationSuccessful(true);
-
         setIsModalOpen(false);
-
         setTimer(0);
 
         toast.success("Email verified successfully!");
@@ -151,7 +143,7 @@ const CompleteSchoolProfile = () => {
     } catch (error) {
       toast.error(error.response?.data?.message || "Verification failed");
     } finally {
-      setVerifyingOTP(false); // Ensure state is reset no matter what
+      setVerifyingOTP(false);
     }
   };
 
@@ -346,7 +338,6 @@ const CompleteSchoolProfile = () => {
         });
 
         toast.success("School Profile successfully created!");
-        // navigate("/school-dashboard");
         navigate("/school/go-to-dashboard");
         //
       } else {

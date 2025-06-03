@@ -230,7 +230,6 @@ const CompleteSchoolProfile = () => {
           schoolMobileNo: "",
           schoolEmail: "",
           schoolAddress: "",
-
           affiliationUpto: "",
           panNo: "",
           profileImage: null,

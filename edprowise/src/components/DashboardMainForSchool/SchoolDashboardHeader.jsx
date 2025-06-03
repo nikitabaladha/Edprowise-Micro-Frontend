@@ -29,7 +29,11 @@ const SchoolDashboardHeader = () => {
     }
 
     try {
-      const response = await getAPI(`/school-profile/${schoolId}`, {}, true);
+      const response = await getAPI(
+        `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/school-profile/${schoolId}`,
+        {},
+        true
+      );
 
       if (!response.hasError && response.data && response.data.data) {
         setSchool(response.data.data);
@@ -431,7 +435,7 @@ const SchoolDashboardHeader = () => {
                 >
                   <span className="d-flex align-items-center">
                     <img
-                      src={`${process.env.REACT_APP_API_URL_FOR_IMAGE}${school?.profileImage}`}
+                      src={`${process.env.REACT_APP_API_URL_FOR_USER_IMAGE}${school?.profileImage}`}
                       className="rounded-circle"
                       alt="logo light"
                       style={{ objectFit: "cover" }}
