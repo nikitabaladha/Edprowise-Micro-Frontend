@@ -4,12 +4,14 @@ import putAPI from "../api/putAPI.jsx";
 
 const DELETE_CONFIG = {
   school: {
-    endpoint: (id) => `/school-delete/${id}`,
+    endpoint: (id) =>
+      `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/school-delete/${id}`,
     successMessage: "School and all its users have been marked as deleted!",
     errorMessage: "Failed to delete school.",
   },
   seller: {
-    endpoint: (id) => `/seller-profile-delete/${id}`,
+    endpoint: (id) =>
+      `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/seller-profile-delete/${id}`,
     successMessage: "Seller has been marked as deleted!",
     errorMessage: "Failed to delete seller.",
   },

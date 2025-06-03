@@ -40,7 +40,7 @@ const AddNewAdmin = () => {
 
     try {
       const response = await postAPI(
-        "/add-admin",
+        `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/add-admin`,
         {
           firstName: formData.firstName,
           lastName: formData.lastName,

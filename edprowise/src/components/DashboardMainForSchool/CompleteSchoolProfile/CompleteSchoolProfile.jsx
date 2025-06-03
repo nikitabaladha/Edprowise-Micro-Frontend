@@ -87,7 +87,11 @@ const CompleteSchoolProfile = () => {
     }
 
     try {
-      const response = await getAPI(`/school-profile/${schoolId}`, {}, true);
+      const response = await getAPI(
+        `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/school-profile/${schoolId}`,
+        {},
+        true
+      );
 
       if (!response.hasError && response.data && response.data.data) {
         setSchool(response.data.data);
@@ -201,7 +205,7 @@ const CompleteSchoolProfile = () => {
 
     try {
       const response = await putAPI(
-        `/school-profile/${school.schoolId}`,
+        `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/school-profile/${school.schoolId}`,
         formDataToSend,
         {
           "Content-Type": "multipart/form-data",
@@ -210,7 +214,9 @@ const CompleteSchoolProfile = () => {
       );
 
       if (!response.data.hasError) {
-        const updatedUserResponse = await getAPI(`/get-user-by-id/${userId}`);
+        const updatedUserResponse = await getAPI(
+          `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/get-user-by-id/${userId}`
+        );
         if (!updatedUserResponse.hasError) {
           localStorage.setItem(
             "userDetails",

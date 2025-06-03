@@ -28,7 +28,11 @@ const ViewSchool = () => {
 
   const fetchSchoolData = async () => {
     try {
-      const response = await getAPI(`/school-profile/${schoolId}`, {}, true);
+      const response = await getAPI(
+        `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/school-profile/${schoolId}`,
+        {},
+        true
+      );
 
       if (!response.hasError && response.data && response.data.data) {
         setSchool(response.data.data);
@@ -43,7 +47,7 @@ const ViewSchool = () => {
   const fetchUserData = async () => {
     try {
       const response = await getAPI(
-        `/get-all-user-by-school-id/${schoolId}`,
+        `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/get-all-user-by-school-id/${schoolId}`,
         {},
         true
       );
@@ -187,7 +191,7 @@ const ViewSchool = () => {
                     <div className="mb-3 d-flex justify-content-center">
                       <div className="rounded bg-light d-flex align-items-center justify-content-center">
                         <img
-                          src={`${process.env.REACT_APP_API_URL_FOR_IMAGE}${school?.profileImage}`}
+                          src={`${process.env.REACT_APP_API_URL_FOR_USER_IMAGE}${school?.profileImage}`}
                           alt={`${school?.schoolName} Profile`}
                           className="avatar-md"
                           style={{
@@ -305,7 +309,7 @@ const ViewSchool = () => {
                               }}
                             >
                               <Viewer
-                                fileUrl={`${process.env.REACT_APP_API_URL_FOR_IMAGE}${school?.affiliationCertificate}`}
+                                fileUrl={`${process.env.REACT_APP_API_URL_FOR_USER_IMAGE}${school?.affiliationCertificate}`}
                               />
                             </div>
                           </Worker>
@@ -318,7 +322,7 @@ const ViewSchool = () => {
                             }}
                           >
                             <img
-                              src={`${process.env.REACT_APP_API_URL_FOR_IMAGE}${school?.affiliationCertificate}`}
+                              src={`${process.env.REACT_APP_API_URL_FOR_USER_IMAGE}${school?.affiliationCertificate}`}
                               alt="Affiliation Certificate"
                               style={{ width: "100%", height: "auto" }}
                             />
@@ -345,7 +349,7 @@ const ViewSchool = () => {
                               }}
                             >
                               <Viewer
-                                fileUrl={`${process.env.REACT_APP_API_URL_FOR_IMAGE}${school?.panFile}`}
+                                fileUrl={`${process.env.REACT_APP_API_URL_FOR_USER_IMAGE}${school?.panFile}`}
                               />
                             </div>
                           </Worker>
@@ -358,7 +362,7 @@ const ViewSchool = () => {
                             }}
                           >
                             <img
-                              src={`${process.env.REACT_APP_API_URL_FOR_IMAGE}${school?.panFile}`}
+                              src={`${process.env.REACT_APP_API_URL_FOR_USER_IMAGE}${school?.panFile}`}
                               alt="Affiliation Certificate"
                               style={{ width: "100%", height: "auto" }}
                             />

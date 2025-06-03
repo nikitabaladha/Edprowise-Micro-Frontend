@@ -93,9 +93,12 @@ const CompleteSchoolProfile = () => {
     setSending(true);
 
     try {
-      const response = await postAPI("/send-otp-email-verification", {
-        email: formData.schoolEmail,
-      });
+      const response = await postAPI(
+        `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/send-otp-email-verification`,
+        {
+          email: formData.schoolEmail,
+        }
+      );
 
       setSending(true);
 
@@ -123,11 +126,14 @@ const CompleteSchoolProfile = () => {
     try {
       setVerifyingOTP(true);
 
-      const response = await postAPI("/verify-email-code", {
-        email: otpData.email,
+      const response = await postAPI(
+        "${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/verify-email-code",
+        {
+          email: otpData.email,
 
-        verificationCode: otpData.otp,
-      });
+          verificationCode: otpData.otp,
+        }
+      );
 
       if (!response.data.hasError) {
         setEmailVerificationState("verified");
@@ -284,7 +290,7 @@ const CompleteSchoolProfile = () => {
 
     try {
       const response = await postAPI(
-        `/school-profile/${schoolId}`,
+        `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/school-profile/${schoolId}`,
         formDataToSend,
         {
           "Content-Type": "multipart/form-data",
@@ -293,7 +299,9 @@ const CompleteSchoolProfile = () => {
       );
 
       if (!response.data.hasError) {
-        const storedUserResponse = await getAPI(`/get-user-by-id/${userId}`);
+        const storedUserResponse = await getAPI(
+          `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/get-user-by-id/${userId}`
+        );
 
         if (!storedUserResponse.hasError) {
           localStorage.setItem(

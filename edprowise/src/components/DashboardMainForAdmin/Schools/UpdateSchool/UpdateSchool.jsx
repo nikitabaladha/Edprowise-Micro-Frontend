@@ -90,17 +90,17 @@ const UpdateSchool = () => {
       // Set previews
       if (school.profileImage) {
         setPreviewProfileImage(
-          `${process.env.REACT_APP_API_URL_FOR_IMAGE}${school.profileImage}`
+          `${process.env.REACT_APP_API_URL_FOR_USER_IMAGE}${school.profileImage}`
         );
       }
       if (school.affiliationCertificate) {
         setPreviewAffiliationCertificate(
-          `${process.env.REACT_APP_API_URL_FOR_IMAGE}${school.affiliationCertificate}`
+          `${process.env.REACT_APP_API_URL_FOR_USER_IMAGE}${school.affiliationCertificate}`
         );
       }
       if (school.panFile) {
         setPreviewPanFile(
-          `${process.env.REACT_APP_API_URL_FOR_IMAGE}${school.panFile}`
+          `${process.env.REACT_APP_API_URL_FOR_USER_IMAGE}${school.panFile}`
         );
       }
     }
@@ -192,7 +192,7 @@ const UpdateSchool = () => {
       });
 
       const response = await putAPI(
-        `/school/${school._id}`,
+        `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/school/${school._id}`,
         data,
         {
           "Content-Type": "multipart/form-data",

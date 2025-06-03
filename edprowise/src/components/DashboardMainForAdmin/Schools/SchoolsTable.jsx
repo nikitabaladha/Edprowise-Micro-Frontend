@@ -22,7 +22,7 @@ const SchoolsTable = () => {
 
   const fetchSchoolData = async () => {
     try {
-      let url = "/school";
+      let url = `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/school`;
       if (filterSchoolName) {
         url += `?schoolName=${encodeURIComponent(filterSchoolName)}`;
       }
@@ -236,7 +236,7 @@ const SchoolsTable = () => {
                             <div className="d-flex align-items-center gap-2">
                               <div className="rounded bg-light d-flex align-items-center justify-content-center">
                                 <img
-                                  src={`${process.env.REACT_APP_API_URL_FOR_IMAGE}${school.profileImage}`}
+                                  src={`${process.env.REACT_APP_API_URL_FOR_USER_IMAGE}${school.profileImage}`}
                                   alt={`${school.schoolName} Profile`}
                                   className="avatar-md"
                                   style={{

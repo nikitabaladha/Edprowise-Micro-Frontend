@@ -90,7 +90,7 @@ const AddNewSchool = () => {
       });
 
       const response = await postAPI(
-        "/school",
+        `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/school`,
         data,
         {
           "Content-Type": "multipart/form-data",

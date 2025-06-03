@@ -174,7 +174,7 @@ const AddNewSeller = () => {
 
     try {
       const response = await postAPI(
-        "/seller-profile-by-admin",
+        `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/seller-profile-by-admin`,
         data,
         { "Content-Type": "multipart/form-data" },
         true
