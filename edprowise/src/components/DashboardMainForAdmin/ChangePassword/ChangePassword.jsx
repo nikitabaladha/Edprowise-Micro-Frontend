@@ -47,7 +47,7 @@ const ChangePassword = () => {
       };
 
       const response = await putAPI(
-        "/change-edprowise-admin-password",
+        `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/change-edprowise-admin-password`,
         payload,
         true
       );
@@ -113,7 +113,7 @@ const ChangePassword = () => {
                       <div className="d-flex align-items-center">
                         <div className="rounded bg-light d-flex align-items-center justify-content-center">
                           <img
-                            src={`${process.env.REACT_APP_API_URL_FOR_IMAGE}${adminProfile?.edprowiseProfile}`}
+                            src={`${process.env.REACT_APP_API_URL_FOR_USER_IMAGE}${adminProfile?.edprowiseProfile}`}
                             alt={`${adminProfile?.companyName} Profile`}
                             className="avatar-md"
                             style={{

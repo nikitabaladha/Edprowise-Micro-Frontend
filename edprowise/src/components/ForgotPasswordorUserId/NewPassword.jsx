@@ -55,7 +55,7 @@ const NewPassword = (e) => {
 
     try {
       const response = await putAPI(
-        "/reset-password",
+        `${process.env.REACT_APP_EMAIL_SERVICE}/reset-password`,
         {
           userId: passedUserId,
           newPassword: formData.password,

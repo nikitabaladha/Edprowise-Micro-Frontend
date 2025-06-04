@@ -51,7 +51,7 @@ const NewUserId = (e) => {
 
     try {
       const response = await putAPI(
-        "/reset-userid",
+        `${process.env.REACT_APP_EMAIL_SERVICE}/reset-userid`,
         {
           userId: passedUserId,
           NewUserId: formData.userId,

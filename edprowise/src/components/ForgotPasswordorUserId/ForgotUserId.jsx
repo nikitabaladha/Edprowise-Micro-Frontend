@@ -37,7 +37,7 @@ const ForgotUserId = (e) => {
     e.preventDefault();
     try {
       const response = await postAPI(
-        "/send-verification-code-onemail",
+        `${process.env.REACT_APP_EMAIL_SERVICE}/send-verification-code-onemail`,
         { email: formData.email },
         false
       );
@@ -63,7 +63,7 @@ const ForgotUserId = (e) => {
     e.preventDefault();
     try {
       const response = await postAPI(
-        "/verify-code",
+        `${process.env.REACT_APP_EMAIL_SERVICE}/verify-code`,
         {
           userId: userid,
           verificationCode: formData.verificationCode,
@@ -90,7 +90,7 @@ const ForgotUserId = (e) => {
   const handleResendCode = async () => {
     try {
       const response = await postAPI(
-        "/send-verification-code",
+        `${process.env.REACT_APP_EMAIL_SERVICE}/send-verification-code`,
         { userId: userid },
         false
       );

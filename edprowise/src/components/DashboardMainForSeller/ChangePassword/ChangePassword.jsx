@@ -45,7 +45,11 @@ const ChangePassword = () => {
         newPassword: formData.newPassword,
       };
 
-      const response = await putAPI("/change-seller-password", payload, true);
+      const response = await putAPI(
+        `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/change-seller-password`,
+        payload,
+        true
+      );
 
       if (!response.hasError) {
         toast.success("Password changed successfully.");
@@ -108,7 +112,7 @@ const ChangePassword = () => {
                       <div className="d-flex align-items-center">
                         <div className="rounded bg-light d-flex align-items-center justify-content-center">
                           <img
-                            src={`${process.env.REACT_APP_API_URL_FOR_IMAGE}${sellerProfile?.sellerProfile}`}
+                            src={`${process.env.REACT_APP_API_URL_FOR_USER_IMAGE}${sellerProfile?.sellerProfile}`}
                             alt={`${sellerProfile?.companyName} Profile`}
                             className="avatar-md"
                             style={{

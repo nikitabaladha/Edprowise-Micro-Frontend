@@ -45,7 +45,7 @@ const ChangePassword = () => {
       };
 
       const response = await putAPI(
-        "/change-school-admin-password",
+        `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/change-school-admin-password`,
         payload,
         true
       );
@@ -111,7 +111,7 @@ const ChangePassword = () => {
                       <div className="d-flex align-items-center">
                         <div className="rounded bg-light d-flex align-items-center justify-content-center">
                           <img
-                            src={`${process.env.REACT_APP_API_URL_FOR_IMAGE}${school.profileImage}`}
+                            src={`${process.env.REACT_APP_API_URL_FOR_USER_IMAGE}${school.profileImage}`}
                             alt={`${school.schoolName} Profile`}
                             className="avatar-md"
                             style={{

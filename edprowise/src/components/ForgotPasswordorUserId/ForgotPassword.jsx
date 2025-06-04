@@ -45,7 +45,7 @@ const ForgotPassword = (e) => {
     e.preventDefault();
     try {
       const response = await postAPI(
-        "/send-verification-code",
+        `${process.env.REACT_APP_EMAIL_SERVICE}/send-verification-code`,
         { userId: formData.userId },
         false
       );
@@ -71,7 +71,7 @@ const ForgotPassword = (e) => {
     e.preventDefault();
     try {
       const response = await postAPI(
-        "/verify-code",
+        `${process.env.REACT_APP_EMAIL_SERVICE}/verify-code`,
         {
           userId: formData.userId,
           verificationCode: formData.verificationCode,
@@ -102,7 +102,7 @@ const ForgotPassword = (e) => {
   const handleResendCode = async () => {
     try {
       const response = await postAPI(
-        "/send-verification-code",
+        `${process.env.REACT_APP_EMAIL_SERVICE}/send-verification-code`,
         { userId: formData.userId },
         false
       );
