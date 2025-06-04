@@ -81,7 +81,11 @@ const AddNewSeller = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await getAPI("/category", {}, true);
+        const response = await getAPI(
+          `${process.env.REACT_APP_PROCUREMENT_SERVICE}/category`,
+          {},
+          true
+        );
         if (!response.hasError && Array.isArray(response.data.data)) {
           setCategories(response.data.data);
         } else {
@@ -98,7 +102,11 @@ const AddNewSeller = () => {
     if (subCategories[categoryId]) return;
 
     try {
-      const response = await getAPI(`/sub-category/${categoryId}`, {}, true);
+      const response = await getAPI(
+        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/sub-category/${categoryId}`,
+        {},
+        true
+      );
       if (!response.hasError && Array.isArray(response.data.data)) {
         setSubCategories((prev) => ({
           ...prev,

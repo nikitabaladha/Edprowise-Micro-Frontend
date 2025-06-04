@@ -118,7 +118,7 @@ const UpdateSeller = () => {
   const fetchSellerProfileData = async () => {
     try {
       const response = await getAPI(
-        `/seller-profile-get-by-id/${profileId}`,
+        `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/seller-profile-get-by-id/${profileId}`,
         {},
         true
       );
@@ -187,8 +187,10 @@ const UpdateSeller = () => {
 
         const normalizedProducts = response.data.data.dealingProducts.map(
           (product) => ({
-            categoryId: product.categoryId._id,
-            subCategoryIds: product.subCategoryIds.map((subCat) => subCat._id),
+            categoryId: product.categoryId,
+            categoryName: product.categoryName,
+            subCategoryIds: product.subCategoryIds,
+            subCategoryNames: product.subCategoryNames,
           })
         );
         setDealingProducts(normalizedProducts);
@@ -207,7 +209,11 @@ const UpdateSeller = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await getAPI("/category", {}, true);
+        const response = await getAPI(
+          `${process.env.REACT_APP_PROCUREMENT_SERVICE}/category`,
+          {},
+          true
+        );
         if (!response.hasError && Array.isArray(response.data.data)) {
           setCategories(response.data.data);
         }
@@ -225,7 +231,11 @@ const UpdateSeller = () => {
     if (subCategories[categoryId]) return;
 
     try {
-      const response = await getAPI(`/sub-category/${categoryId}`, {}, true);
+      const response = await getAPI(
+        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/sub-category/${categoryId}`,
+        {},
+        true
+      );
       if (!response.hasError && Array.isArray(response.data.data)) {
         setSubCategories((prev) => ({
           ...prev,
@@ -255,12 +265,29 @@ const UpdateSeller = () => {
 
   const handleDealingProductChange = (index, field, value) => {
     const updatedProducts = [...dealingProducts];
+
     if (field === "categoryId") {
-      updatedProducts[index] = { categoryId: value, subCategoryIds: [] };
+      // Find the category name for display
+      const category = categories.find((cat) => cat._id === value);
+      updatedProducts[index] = {
+        categoryId: value,
+        categoryName: category?.categoryName || "", // For display only
+        subCategoryIds: [],
+      };
       handleCategoryChange(value);
     } else if (field === "subCategoryIds") {
-      updatedProducts[index].subCategoryIds = value;
+      // Find subcategory names for display
+      const subCats = (subCategories[updatedProducts[index].categoryId] || [])
+        .filter((sub) => value.includes(sub._id))
+        .map((sub) => sub.subCategoryName);
+
+      updatedProducts[index] = {
+        ...updatedProducts[index],
+        subCategoryIds: value,
+        subCategoryNames: subCats, // For display only
+      };
     }
+
     setDealingProducts(updatedProducts);
   };
 
@@ -385,12 +412,21 @@ const UpdateSeller = () => {
     if (formData.gstFile instanceof File) {
       formDataToSend.append("gstFile", formData.gstFile);
     }
-    formDataToSend.append("dealingProducts", JSON.stringify(dealingProducts));
+
+    const backendDealingProducts = dealingProducts.map((product) => ({
+      categoryId: product.categoryId,
+      subCategoryIds: product.subCategoryIds,
+    }));
+
+    formDataToSend.append(
+      "dealingProducts",
+      JSON.stringify(backendDealingProducts)
+    );
     setSending(true);
 
     try {
       const response = await putAPI(
-        `/seller-profile/${profileId}`,
+        `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/seller-profile/${profileId}`,
         formDataToSend,
         {
           "Content-Type": "multipart/form-data",
@@ -565,7 +601,7 @@ const UpdateSeller = () => {
                           previewSellerProfileImage,
                           false,
                           formData.sellerProfile
-                            ? `${process.env.REACT_APP_API_URL_FOR_IMAGE}${formData.sellerProfile}`
+                            ? `${process.env.REACT_APP_API_URL_FOR_USER_IMAGE}${formData.sellerProfile}`
                             : null,
                           "Profile Preview"
                         )}
@@ -591,7 +627,7 @@ const UpdateSeller = () => {
                           previewSellerSinatureImage,
                           false,
                           formData.signature
-                            ? `${process.env.REACT_APP_API_URL_FOR_IMAGE}${formData.signature}`
+                            ? `${process.env.REACT_APP_API_URL_FOR_USER_IMAGE}${formData.signature}`
                             : null,
                           "Signature Preview"
                         )}
@@ -771,7 +807,7 @@ const UpdateSeller = () => {
                           previewGstFile,
                           isGstFilePDF,
                           formData.gstFile
-                            ? `${process.env.REACT_APP_API_URL_FOR_IMAGE}${formData.gstFile}`
+                            ? `${process.env.REACT_APP_API_URL_FOR_USER_IMAGE}${formData.gstFile}`
                             : null,
                           "GST File"
                         )}
@@ -798,7 +834,7 @@ const UpdateSeller = () => {
                           previewPanFile,
                           isPanFilePDF,
                           formData.panFile
-                            ? `${process.env.REACT_APP_API_URL_FOR_IMAGE}${formData.panFile}`
+                            ? `${process.env.REACT_APP_API_URL_FOR_USER_IMAGE}${formData.panFile}`
                             : null,
                           "PAN File"
                         )}
@@ -825,7 +861,7 @@ const UpdateSeller = () => {
                           previewTanFile,
                           isTanFilePDF,
                           formData.tanFile
-                            ? `${process.env.REACT_APP_API_URL_FOR_IMAGE}${formData.tanFile}`
+                            ? `${process.env.REACT_APP_API_URL_FOR_USER_IMAGE}${formData.tanFile}`
                             : null,
                           "TAN File"
                         )}
@@ -852,7 +888,7 @@ const UpdateSeller = () => {
                           previewCinFile,
                           isCinFilePDF,
                           formData.cinFile
-                            ? `${process.env.REACT_APP_API_URL_FOR_IMAGE}${formData.cinFile}`
+                            ? `${process.env.REACT_APP_API_URL_FOR_USER_IMAGE}${formData.cinFile}`
                             : null,
                           "CIN File"
                         )}

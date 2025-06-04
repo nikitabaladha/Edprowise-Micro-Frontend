@@ -86,9 +86,12 @@ const CompleteSellerProfile = () => {
     setSending(true);
 
     try {
-      const response = await postAPI("/send-otp-email-verification", {
-        email: formData.emailId,
-      });
+      const response = await postAPI(
+        `${process.env.REACT_APP_EMAIL_SERVICE}/send-otp-email-verification`,
+        {
+          email: formData.emailId,
+        }
+      );
       setSending(true);
 
       if (!response.data.hasError) {
@@ -115,11 +118,14 @@ const CompleteSellerProfile = () => {
     try {
       setVerifyingOTP(true);
 
-      const response = await postAPI("/verify-email-code", {
-        email: otpData.email,
+      const response = await postAPI(
+        `${process.env.REACT_APP_EMAIL_SERVICE}/verify-email-code`,
+        {
+          email: otpData.email,
 
-        verificationCode: otpData.otp,
-      });
+          verificationCode: otpData.otp,
+        }
+      );
 
       if (!response.data.hasError) {
         setEmailVerificationState("verified");
@@ -187,7 +193,11 @@ const CompleteSellerProfile = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await getAPI("/category", {}, true);
+        const response = await getAPI(
+          `${process.env.REACT_APP_PROCUREMENT_SERVICE}/category`,
+          {},
+          true
+        );
         if (!response.hasError && Array.isArray(response.data.data)) {
           setCategories(response.data.data);
         } else {
@@ -204,7 +214,11 @@ const CompleteSellerProfile = () => {
     if (subCategories[categoryId]) return;
 
     try {
-      const response = await getAPI(`/sub-category/${categoryId}`, {}, true);
+      const response = await getAPI(
+        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/sub-category/${categoryId}`,
+        {},
+        true
+      );
       if (!response.hasError && Array.isArray(response.data.data)) {
         setSubCategories((prev) => ({
           ...prev,
@@ -284,7 +298,7 @@ const CompleteSellerProfile = () => {
 
     try {
       const response = await postAPI(
-        "/seller-profile",
+        `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/seller-profile`,
         data,
         { "Content-Type": "multipart/form-data" },
         true
@@ -327,7 +341,9 @@ const CompleteSellerProfile = () => {
           gstFile: null,
         });
         setDealingProducts([]);
-        const updatedUserResponse = await getAPI(`/get-seller-by-id/${userId}`);
+        const updatedUserResponse = await getAPI(
+          `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/get-seller-by-id/${userId}`
+        );
         if (!updatedUserResponse.hasError) {
           localStorage.setItem(
             "userDetails",
@@ -1152,6 +1168,96 @@ const CompleteSellerProfile = () => {
                     Dealing Products
                   </h4>
                   <hr></hr>
+                  {/* <div className="row">
+                    {dealingProducts.map((product, index) => (
+                      <div key={index} className="mb-3">
+                        <div className="row">
+                          <div className="col-md-6">
+                            <label htmlFor="category" className="form-label">
+                              Category <span className="text-danger">*</span>
+                            </label>
+                            <select
+                              className="form-control"
+                              value={product.categoryId}
+                              onChange={(e) =>
+                                handleDealingProductChange(
+                                  index,
+                                  "categoryId",
+                                  e.target.value
+                                )
+                              }
+                            >
+                              <option value="">Select Category</option>
+                              {categories.map((category) => (
+                                <option key={category.id} value={category.id}>
+                                  {category.categoryName}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+                          <div className="col-md-6">
+                            <label
+                              htmlFor="subCategories"
+                              className="form-label"
+                            >
+                              Subcategories{" "}
+                              <span className="text-danger">*</span>
+                            </label>
+                            <div>
+                              {(subCategories[product.categoryId] || []).map(
+                                (subCategory) => (
+                                  <div
+                                    key={subCategory.id}
+                                    className="form-check ms-1"
+                                  >
+                                    <input
+                                      type="checkbox"
+                                      id={`subCategory-${subCategory.id}`}
+                                      value={subCategory.id}
+                                      checked={product.subCategoryIds.includes(
+                                        subCategory.id
+                                      )}
+                                      onChange={(e) => {
+                                        const selectedSubCategories = e.target
+                                          .checked
+                                          ? [
+                                              ...product.subCategoryIds,
+                                              subCategory.id,
+                                            ]
+                                          : product.subCategoryIds.filter(
+                                              (id) => id !== subCategory.id
+                                            );
+                                        handleDealingProductChange(
+                                          index,
+                                          "subCategoryIds",
+                                          selectedSubCategories
+                                        );
+                                      }}
+                                      className="form-check-input"
+                                    />
+                                    <label
+                                      htmlFor={`subCategory-${subCategory.id}`}
+                                      className="form-label"
+                                    >
+                                      {subCategory.subCategoryName}
+                                    </label>
+                                  </div>
+                                )
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          className="btn btn-danger mt-2"
+                          onClick={() => removeDealingProduct(index)}
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    ))}
+                  </div> */}
+
                   <div className="row">
                     {dealingProducts.map((product, index) => (
                       <div key={index} className="mb-3">

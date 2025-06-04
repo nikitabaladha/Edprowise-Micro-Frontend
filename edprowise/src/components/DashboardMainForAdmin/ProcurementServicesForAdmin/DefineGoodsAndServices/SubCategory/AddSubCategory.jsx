@@ -25,7 +25,10 @@ const AddCategory = () => {
   useEffect(() => {
     const fetchMainCategories = async () => {
       try {
-        const response = await getAPI("/main-category", true);
+        const response = await getAPI(
+          `${process.env.REACT_APP_PROCUREMENT_SERVICE}/main-category`,
+          true
+        );
         if (!response.hasError) {
           setMainCategories(response.data.data);
         } else {
@@ -47,7 +50,7 @@ const AddCategory = () => {
     if (selectedMainCategoryId) {
       try {
         const response = await getAPI(
-          `/category/${selectedMainCategoryId}`,
+          `${process.env.REACT_APP_PROCUREMENT_SERVICE}/category/${selectedMainCategoryId}`,
           {},
           true
         );
@@ -106,9 +109,7 @@ const AddCategory = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     setSending(true);
-
     try {
       for (const row of categoryRows) {
         let subCategoryData = {};
@@ -120,7 +121,7 @@ const AddCategory = () => {
             mainCategoryId: row.mainCategoryId,
           };
           const response = await postAPI(
-            "/sub-category",
+            `${process.env.REACT_APP_PROCUREMENT_SERVICE}/sub-category`,
             subCategoryData,
             {},
             true
@@ -138,7 +139,7 @@ const AddCategory = () => {
             edprowiseMargin: row.edprowiseMargin,
           };
           const response = await postAPI(
-            "/sub-category-without-category-id",
+            `${process.env.REACT_APP_PROCUREMENT_SERVICE}/sub-category-without-category-id`,
             subCategoryData,
             {},
             true
@@ -156,7 +157,7 @@ const AddCategory = () => {
             edprowiseMargin: row.edprowiseMargin,
           };
           const response = await postAPI(
-            "/sub-category-without-ids",
+            `${process.env.REACT_APP_PROCUREMENT_SERVICE}/sub-category-without-ids`,
             subCategoryData,
             {},
             true

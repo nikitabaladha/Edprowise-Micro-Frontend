@@ -18,7 +18,11 @@ const SellerDashboardHeader = () => {
 
   const fetchSellerProfileData = async () => {
     try {
-      const response = await getAPI(`/seller-profile`, {}, true);
+      const response = await getAPI(
+        `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/seller-profile`,
+        {},
+        true
+      );
 
       if (!response.hasError && response.data && response.data.data) {
         setSellerProfile(response.data.data);
@@ -373,7 +377,7 @@ const SellerDashboardHeader = () => {
                 >
                   <span className="d-flex align-items-center">
                     <img
-                      src={`${process.env.REACT_APP_API_URL_FOR_IMAGE}${sellerProfile?.sellerProfile}`}
+                      src={`${process.env.REACT_APP_API_URL_FOR_USER_IMAGE}${sellerProfile?.sellerProfile}`}
                       className="rounded-circle"
                       alt="logo light"
                       style={{ objectFit: "cover" }}

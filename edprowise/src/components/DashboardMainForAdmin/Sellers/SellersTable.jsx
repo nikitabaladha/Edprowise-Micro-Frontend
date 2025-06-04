@@ -17,7 +17,7 @@ const SellersTable = () => {
 
   const fetchSellersData = async () => {
     try {
-      let url = "/seller-profile-get-all";
+      let url = `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/seller-profile-get-all`;
       if (filterCompanyName) {
         url += `?companyName=${encodeURIComponent(filterCompanyName)}`;
       }
@@ -234,7 +234,7 @@ const SellersTable = () => {
                             <div className="d-flex align-items-center gap-2">
                               <div className="rounded bg-light d-flex align-items-center justify-content-center">
                                 <img
-                                  src={`${process.env.REACT_APP_API_URL_FOR_IMAGE}${seller.sellerProfile}`}
+                                  src={`${process.env.REACT_APP_API_URL_FOR_USER_IMAGE}${seller.sellerProfile}`}
                                   alt={`${seller.companyName} Profile`}
                                   className="avatar-md"
                                   style={{

@@ -44,7 +44,8 @@ const DELETE_CONFIG = {
     errorMessage: "Failed to delete Cart.",
   },
   subCategory: {
-    getEndpoint: (id) => `/sub-category/${id}`,
+    getEndpoint: (id) =>
+      `${process.env.REACT_APP_PROCUREMENT_SERVICE}/sub-category/${id}`,
     successMessage: "SubCategory data successfully deleted!",
     errorMessage: "Failed to delete Subcategory.",
     idKey: "id",

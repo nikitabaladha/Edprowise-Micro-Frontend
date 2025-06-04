@@ -26,7 +26,10 @@ const UpdateSubCategory = () => {
   useEffect(() => {
     const fetchMainCategories = async () => {
       try {
-        const response = await getAPI("/main-category", true);
+        const response = await getAPI(
+          `${process.env.REACT_APP_PROCUREMENT_SERVICE}/main-category`,
+          true
+        );
         if (!response.hasError) {
           setMainCategories(response.data.data);
 
@@ -50,7 +53,11 @@ const UpdateSubCategory = () => {
 
   const fetchCategoriesForMainCategory = async (mainCatId) => {
     try {
-      const response = await getAPI(`/category/${mainCatId}`, {}, true);
+      const response = await getAPI(
+        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/category/${mainCatId}`,
+        {},
+        true
+      );
       if (!response.hasError && Array.isArray(response.data.data)) {
         setCategories(response.data.data);
 
@@ -126,7 +133,7 @@ const UpdateSubCategory = () => {
 
     try {
       const response = await putAPI(
-        `/sub-category/${subCategory.id}`,
+        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/sub-category/${subCategory.id}`,
         {
           subCategoryName: formData.subCategoryName,
           categoryId,

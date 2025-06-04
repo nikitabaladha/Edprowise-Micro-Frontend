@@ -18,7 +18,7 @@ const ViewSeller = () => {
   const fetchSellerProfileData = async () => {
     try {
       const response = await getAPI(
-        `/seller-profile-get-by-id/${sellerId}`,
+        `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/seller-profile-get-by-id/${sellerId}`,
         {},
         true
       );
@@ -113,7 +113,7 @@ const ViewSeller = () => {
                     <div className="mb-3 d-flex justify-content-center">
                       <div className="rounded bg-light d-flex align-items-center justify-content-center">
                         <img
-                          src={`${process.env.REACT_APP_API_URL_FOR_IMAGE}${sellerProfile?.sellerProfile}`}
+                          src={`${process.env.REACT_APP_API_URL_FOR_USER_IMAGE}${sellerProfile?.sellerProfile}`}
                           alt={`${sellerProfile?.companyName} Profile`}
                           className="avatar-md"
                           style={{
@@ -133,7 +133,7 @@ const ViewSeller = () => {
                     <div className="mb-3 d-flex justify-content-center">
                       <div className="rounded bg-light d-flex align-items-center justify-content-center">
                         <img
-                          src={`${process.env.REACT_APP_API_URL_FOR_IMAGE}${sellerProfile?.signature}`}
+                          src={`${process.env.REACT_APP_API_URL_FOR_USER_IMAGE}${sellerProfile?.signature}`}
                           alt="Seller Signature"
                           className="avatar-md"
                           style={{
@@ -220,7 +220,7 @@ const ViewSeller = () => {
                               }}
                             >
                               <Viewer
-                                fileUrl={`${process.env.REACT_APP_API_URL_FOR_IMAGE}${sellerProfile?.panFile}`}
+                                fileUrl={`${process.env.REACT_APP_API_URL_FOR_USER_IMAGE}${sellerProfile?.panFile}`}
                               />
                             </div>
                           </Worker>
@@ -233,7 +233,7 @@ const ViewSeller = () => {
                             }}
                           >
                             <img
-                              src={`${process.env.REACT_APP_API_URL_FOR_IMAGE}${sellerProfile?.panFile}`}
+                              src={`${process.env.REACT_APP_API_URL_FOR_USER_IMAGE}${sellerProfile?.panFile}`}
                               alt="Affiliation Certificate"
                               style={{ width: "100%", height: "auto" }}
                             />
@@ -259,7 +259,7 @@ const ViewSeller = () => {
                               }}
                             >
                               <Viewer
-                                fileUrl={`${process.env.REACT_APP_API_URL_FOR_IMAGE}${sellerProfile?.gstFile}`}
+                                fileUrl={`${process.env.REACT_APP_API_URL_FOR_USER_IMAGE}${sellerProfile?.gstFile}`}
                               />
                             </div>
                           </Worker>
@@ -272,7 +272,7 @@ const ViewSeller = () => {
                             }}
                           >
                             <img
-                              src={`${process.env.REACT_APP_API_URL_FOR_IMAGE}${sellerProfile?.gstFile}`}
+                              src={`${process.env.REACT_APP_API_URL_FOR_USER_IMAGE}${sellerProfile?.gstFile}`}
                               alt="Affiliation Certificate"
                               style={{ width: "100%", height: "auto" }}
                             />
@@ -298,7 +298,7 @@ const ViewSeller = () => {
                               }}
                             >
                               <Viewer
-                                fileUrl={`${process.env.REACT_APP_API_URL_FOR_IMAGE}${sellerProfile?.tanFile}`}
+                                fileUrl={`${process.env.REACT_APP_API_URL_FOR_USER_IMAGE}${sellerProfile?.tanFile}`}
                               />
                             </div>
                           </Worker>
@@ -311,7 +311,7 @@ const ViewSeller = () => {
                             }}
                           >
                             <img
-                              src={`${process.env.REACT_APP_API_URL_FOR_IMAGE}${sellerProfile?.tanFile}`}
+                              src={`${process.env.REACT_APP_API_URL_FOR_USER_IMAGE}${sellerProfile?.tanFile}`}
                               alt="TAN Certificate"
                               style={{ width: "100%", height: "auto" }}
                             />
@@ -337,7 +337,7 @@ const ViewSeller = () => {
                               }}
                             >
                               <Viewer
-                                fileUrl={`${process.env.REACT_APP_API_URL_FOR_IMAGE}${sellerProfile?.cinFile}`}
+                                fileUrl={`${process.env.REACT_APP_API_URL_FOR_USER_IMAGE}${sellerProfile?.cinFile}`}
                               />
                             </div>
                           </Worker>
@@ -350,7 +350,7 @@ const ViewSeller = () => {
                             }}
                           >
                             <img
-                              src={`${process.env.REACT_APP_API_URL_FOR_IMAGE}${sellerProfile?.cinFile}`}
+                              src={`${process.env.REACT_APP_API_URL_FOR_USER_IMAGE}${sellerProfile?.cinFile}`}
                               alt="TAN Certificate"
                               style={{ width: "100%", height: "auto" }}
                             />
@@ -555,7 +555,7 @@ const ViewSeller = () => {
                           <label htmlFor="categoryName" className="form-label">
                             Category Name
                           </label>
-                          <h5>{product.categoryId.categoryName}</h5>
+                          <h5>{product.categoryName}</h5>
                         </div>
                       </div>
                       <div className="col-md-6">
@@ -567,13 +567,10 @@ const ViewSeller = () => {
                             Subcategory Name
                           </label>
                           <ul>
-                            {product.subCategoryIds.map(
-                              (subCategory, subIndex) => (
-                                <li key={subIndex}>
-                                  {subCategory.subCategoryName}
-                                </li>
-                              )
-                            )}
+                            {product.subCategoryNames &&
+                              product.subCategoryNames.map((name, subIndex) => (
+                                <li key={subIndex}>{name}</li>
+                              ))}
                           </ul>
                         </div>
                       </div>

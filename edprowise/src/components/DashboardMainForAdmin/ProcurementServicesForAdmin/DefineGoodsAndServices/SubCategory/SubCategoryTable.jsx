@@ -11,7 +11,11 @@ const MainCategoryTable = () => {
   const [selectedSubCategory, setSelectedSubCategory] = useState(null);
   const fetchSubCategoryData = async () => {
     try {
-      const response = await getAPI(`/sub-category`, {}, true);
+      const response = await getAPI(
+        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/sub-category`,
+        {},
+        true
+      );
       if (
         !response.hasError &&
         response.data &&
