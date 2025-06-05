@@ -63,7 +63,7 @@ const UpdateSubscription = ({ schools, updatedSubscription }) => {
 
     try {
       const response = await putAPI(
-        `/subscription/${subscription.id}`,
+        `${process.env.REACT_APP_SUBSCRIPTION_SERVICE}/subscription/${subscription.id}`,
         formDataToSend,
         true
       );
@@ -73,7 +73,7 @@ const UpdateSubscription = ({ schools, updatedSubscription }) => {
 
         // Fetch school details using the schoolId
         const schoolResponse = await getAPI(
-          `/school/${formData.schoolId}`,
+          `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/school/${formData.schoolId}`,
           {},
           true
         );

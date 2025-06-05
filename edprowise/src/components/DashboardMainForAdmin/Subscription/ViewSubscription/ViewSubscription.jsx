@@ -8,18 +8,13 @@ import { format } from "date-fns";
 
 const ViewSubscriptions = () => {
   const location = useLocation();
-
   const subscriptionId = location?.state?.subscriptionId;
-
   const [subscription, setSubscription] = useState(null);
-
-  console.log("Received subscriptionId:", subscriptionId);
-  // i am getting undefined
 
   const fetchSubscriptionData = async () => {
     try {
       const response = await getAPI(
-        `/subscription-by-id/${subscriptionId}`,
+        `${process.env.REACT_APP_SUBSCRIPTION_SERVICE}/subscription-by-id/${subscriptionId}`,
         {},
         true
       );
@@ -61,7 +56,7 @@ const ViewSubscriptions = () => {
                   <div className="d-flex align-items-center">
                     <div className="rounded bg-light d-flex align-items-center justify-content-center">
                       <img
-                        src={`${process.env.REACT_APP_API_URL_FOR_IMAGE}${subscription?.profileImage}`}
+                        src={`${process.env.REACT_APP_API_URL_FOR_USER_IMAGE}${subscription?.profileImage}`}
                         alt={`${subscription?.schoolName} Profile`}
                         className="avatar-md"
                         style={{

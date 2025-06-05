@@ -23,7 +23,11 @@ const Subscription = () => {
 
   const fetchSchoolData = async () => {
     try {
-      const response = await getAPI(`/school`, {}, true);
+      const response = await getAPI(
+        `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/school`,
+        {},
+        true
+      );
       if (
         !response.hasError &&
         response.data &&
@@ -40,7 +44,11 @@ const Subscription = () => {
 
   const fetchSubscriptionData = async () => {
     try {
-      const response = await getAPI(`/subscription`, {}, true);
+      const response = await getAPI(
+        `${process.env.REACT_APP_SUBSCRIPTION_SERVICE}/subscription`,
+        {},
+        true
+      );
       if (
         !response.hasError &&
         response.data &&

@@ -44,7 +44,7 @@ const AddNewSubscription = ({ addSubscription, schools }) => {
 
     try {
       const response = await postAPI(
-        "/subscription",
+        `${process.env.REACT_APP_SUBSCRIPTION_SERVICE}/subscription`,
         {
           schoolId: formData.schoolId,
           subscriptionFor: formData.subscriptionFor,
@@ -59,7 +59,11 @@ const AddNewSubscription = ({ addSubscription, schools }) => {
         toast.success(response.message || "Subscription added successfully");
 
         const schoolId = response.data.data.schoolId;
-        const schoolDetails = await getAPI(`/school/${schoolId}`, {}, true);
+        const schoolDetails = await getAPI(
+          `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/school/${schoolId}`,
+          {},
+          true
+        );
 
         if (!schoolDetails.hasError) {
           const schoolData = schoolDetails.data.data;

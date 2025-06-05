@@ -67,7 +67,11 @@ const ViewSchool = () => {
 
   const fetchSubscriptionData = async () => {
     try {
-      const response = await getAPI(`/subscription/${schoolId}`, {}, true);
+      const response = await getAPI(
+        `${process.env.REACT_APP_SUBSCRIPTION_SERVICE}/subscription/${schoolId}`,
+        {},
+        true
+      );
       if (
         !response.hasError &&
         response.data &&
@@ -131,13 +135,16 @@ const ViewSchool = () => {
 
     try {
       const response = await getAPI(
-        `/subscription-by-id/${subscriptions.id}`,
+        `${process.env.REACT_APP_SUBSCRIPTION_SERVICE}/subscription-by-id/${subscriptions.id}`,
         {},
         true
       );
       if (!response.hasError && response.data) {
         navigate(`/admin-dashboard/subscriptions/view-subscriptions`, {
-          state: { subscriptions: response.data.data },
+          state: {
+            subscriptions: response.data.data,
+            subscriptionId: subscriptions.id,
+          },
         });
       } else {
         console.error("Invalid response format or error in response");
@@ -559,7 +566,8 @@ const ViewSchool = () => {
                                   onClick={(event) =>
                                     navigateToViewSubscription(
                                       event,
-                                      subscriptions
+                                      subscriptions,
+                                      subscriptions.id
                                     )
                                   }
                                 >

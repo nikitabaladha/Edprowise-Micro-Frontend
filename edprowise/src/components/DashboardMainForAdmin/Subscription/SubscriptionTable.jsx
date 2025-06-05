@@ -182,7 +182,7 @@ const SubscriptionTable = ({
                             <div className="d-flex align-items-center gap-2">
                               <div className="rounded bg-light d-flex align-items-center justify-content-center">
                                 <img
-                                  src={`${process.env.REACT_APP_API_URL_FOR_IMAGE}${subscriptions.profileImage}`}
+                                  src={`${process.env.REACT_APP_API_URL_FOR_USER_IMAGE}${subscriptions.profileImage}`}
                                   alt={`${subscriptions.schoolName} Profile`}
                                   className="avatar-md"
                                   style={{

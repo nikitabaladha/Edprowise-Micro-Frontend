@@ -32,7 +32,8 @@ const DELETE_CONFIG = {
     idKey: "userId",
   },
   subscription: {
-    getEndpoint: (id) => `/subscription/${id}`,
+    getEndpoint: (id) =>
+      `${process.env.REACT_APP_SUBSCRIPTION_SERVICE}/subscription/${id}`,
     successMessage: "Subscription successfully deleted!",
     errorMessage: "Failed to delete subscription.",
     idKey: "schoolId",
