@@ -42,7 +42,7 @@ const FaqContactUsComponent = () => {
     // Send the form data to the backend API
     try {
       const response = await postAPI(
-        "/contactus",
+        `${process.env.REACT_APP_ENQUIRY_SERVICE}/contactus`,
         formData,
         {
           "Content-Type": "application/json",

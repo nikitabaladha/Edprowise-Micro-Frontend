@@ -56,7 +56,7 @@ const RequestDemoForm = () => {
 
     try {
       const response = await postAPI(
-        "/request-demo",
+        `${process.env.REACT_APP_ENQUIRY_SERVICE}/request-demo`,
         data,
         {
           "Content-Type": "application/json",

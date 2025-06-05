@@ -18,7 +18,11 @@ const ViewRequestsForDemo = () => {
   useEffect(() => {
     const fetchRequests = async () => {
       try {
-        const response = await getAPI("/get-request-demo", {}, true);
+        const response = await getAPI(
+          `${process.env.REACT_APP_ENQUIRY_SERVICE}/get-request-demo`,
+          {},
+          true
+        );
 
         // Check if the data has the expected format
         if (!response.hasError && Array.isArray(response.data.data)) {

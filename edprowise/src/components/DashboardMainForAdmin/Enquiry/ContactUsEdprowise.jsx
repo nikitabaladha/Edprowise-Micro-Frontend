@@ -15,7 +15,11 @@ const ContactUsEdprowise = () => {
   useEffect(() => {
     const fetchRequests = async () => {
       try {
-        const response = await getAPI("/get-contactus", {}, true);
+        const response = await getAPI(
+          `${process.env.REACT_APP_ENQUIRY_SERVICE}/get-contactus`,
+          {},
+          true
+        );
 
         // Check if the data has the expected format
         if (

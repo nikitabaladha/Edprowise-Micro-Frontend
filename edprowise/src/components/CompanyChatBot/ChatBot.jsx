@@ -200,7 +200,7 @@ const ChatBot = () => {
 
     try {
       const response = await postAPI(
-        "/contactus",
+        `${process.env.REACT_APP_ENQUIRY_SERVICE}/contactus`,
         userInfo,
         {
           "Content-Type": "application/json",

@@ -63,13 +63,15 @@ const DELETE_CONFIG = {
     idKey: "bankDetailId",
   },
   requestdemo: {
-    getEndpoint: (id) => `/delete-request/${id}`,
+    getEndpoint: (id) =>
+      `${process.env.REACT_APP_ENQUIRY_SERVICE}/delete-request/${id}`,
     successMessage: "Demo request successfully deleted!",
     errorMessage: "Failed to delete demo request.",
     idKey: "_id",
   },
   enquiry: {
-    getEndpoint: (id) => `/delete-contact-form/${id}`,
+    getEndpoint: (id) =>
+      `${process.env.REACT_APP_ENQUIRY_SERVICE}/delete-contact-form/${id}`,
     successMessage: "Enquiry request successfully deleted!",
     errorMessage: "Failed to delete enquiry request.",
     idKey: "_id",
