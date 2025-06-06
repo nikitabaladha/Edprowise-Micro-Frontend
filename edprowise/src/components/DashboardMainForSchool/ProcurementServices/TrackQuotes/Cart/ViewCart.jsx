@@ -37,7 +37,7 @@ const ViewCart = () => {
       const encodedEnquiryNumber = encodeURIComponent(enquiryNumber);
 
       const response = await getAPI(
-        `cart?enquiryNumber=${encodedEnquiryNumber}`,
+        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/cart?enquiryNumber=${encodedEnquiryNumber}`,
         {},
         true
       );
@@ -59,11 +59,6 @@ const ViewCart = () => {
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
-
-  // const handleImageClick = (imageUrl) => {
-  //   setSelectedImage(imageUrl);
-  //   setShowModal(true);
-  // };
 
   const [selectedQuoteImages, setSelectedQuoteImages] = useState([]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -294,7 +289,7 @@ const ViewCart = () => {
                                 item?.cartImages?.filter((img) => img) || [];
                               const firstImage = availableImages[0];
                               const imageUrl = firstImage
-                                ? `${process.env.REACT_APP_API_URL_FOR_IMAGE}${firstImage}`
+                                ? `${process.env.REACT_APP_API_URL_FOR_PROCUREMENT_IMAGE}${firstImage}`
                                 : null;
 
                               return (
@@ -334,7 +329,6 @@ const ViewCart = () => {
                                     </div>
                                   </td>
                                   <td>{item.hsnSacc}</td>
-                                  {/* <td>{item.listingRate}</td> */}
                                   <td>{item.quantity}</td>
                                   <td>{item.finalRateBeforeDiscount}</td>
                                   <td>{item.discount}</td>
@@ -418,7 +412,7 @@ const ViewCart = () => {
                 style={{ height: "300px", overflow: "hidden" }}
               >
                 <img
-                  src={`${process.env.REACT_APP_API_URL_FOR_IMAGE}${selectedQuoteImages[currentImageIndex]}`}
+                  src={`${process.env.REACT_APP_API_URL_FOR_PROCUREMENT_IMAGE}${selectedQuoteImages[currentImageIndex]}`}
                   alt={`Product ${currentImageIndex + 1}`}
                   style={{
                     maxWidth: "95%",

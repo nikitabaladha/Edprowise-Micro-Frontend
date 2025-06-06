@@ -33,7 +33,7 @@ const OrderCancelReasonModal = ({
       const encodedEnquiryNumber = encodeURIComponent(enquiryNumber);
 
       const response = await putAPI(
-        `/request-cancel-order-by-buyer?sellerId=${sellerId}&enquiryNumber=${encodedEnquiryNumber}&schoolId=${schoolId}`,
+        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/request-cancel-order-by-buyer?sellerId=${sellerId}&enquiryNumber=${encodedEnquiryNumber}&schoolId=${schoolId}`,
         formDataToSend,
         true
       );

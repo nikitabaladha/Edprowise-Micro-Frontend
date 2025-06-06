@@ -182,7 +182,11 @@ const RequestQuote = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await getAPI("/category", {}, true);
+        const response = await getAPI(
+          `${process.env.REACT_APP_PROCUREMENT_SERVICE}/category`,
+          {},
+          true
+        );
         if (!response.hasError && Array.isArray(response.data.data)) {
           setCategories(response.data.data);
         } else {
@@ -206,7 +210,7 @@ const RequestQuote = () => {
     if (selectedCategoryId) {
       try {
         const response = await getAPI(
-          `/sub-category/${selectedCategoryId}`,
+          `${process.env.REACT_APP_PROCUREMENT_SERVICE}/sub-category/${selectedCategoryId}`,
           {},
           true
         );
@@ -267,7 +271,7 @@ const RequestQuote = () => {
           src={
             images[0] instanceof Blob
               ? URL.createObjectURL(images[0])
-              : `${process.env.REACT_APP_API_URL_FOR_IMAGE}${images[0]}`
+              : `${process.env.REACT_APP_API_URL_FOR_PROCUREMENT_IMAGE}${images[0]}`
           }
           alt="Product preview"
           className="img-fluid h-100"
@@ -575,7 +579,7 @@ const RequestQuote = () => {
                       ? URL.createObjectURL(
                           selectedQuoteImages[currentImageIndex]
                         )
-                      : `${process.env.REACT_APP_API_URL_FOR_IMAGE}${selectedQuoteImages[currentImageIndex]}`
+                      : `${process.env.REACT_APP_API_URL_FOR_PROCUREMENT_IMAGE}${selectedQuoteImages[currentImageIndex]}`
                   }
                   alt={`Product ${currentImageIndex + 1}`}
                   style={{

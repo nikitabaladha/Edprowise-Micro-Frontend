@@ -33,7 +33,7 @@ const SubmitQuote = () => {
       try {
         const encodedEnquiryNumber = encodeURIComponent(enquiryNumber);
         const response = await getAPI(
-          `/submit-quote?enquiryNumber=${encodedEnquiryNumber}&sellerId=${sellerId}`
+          `${process.env.REACT_APP_PROCUREMENT_SERVICE}/submit-quote?enquiryNumber=${encodedEnquiryNumber}&sellerId=${sellerId}`
         );
         if (!response.hasError && response.data && response.data.data) {
           const {
@@ -107,7 +107,7 @@ const SubmitQuote = () => {
     try {
       const encodedEnquiryNumber = encodeURIComponent(enquiryNumber);
       const response = await putAPI(
-        `/submit-quote?enquiryNumber=${encodedEnquiryNumber}&sellerId=${sellerId}`,
+        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/submit-quote?enquiryNumber=${encodedEnquiryNumber}&sellerId=${sellerId}`,
         dataToSend,
         true
       );

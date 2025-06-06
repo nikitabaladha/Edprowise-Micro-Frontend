@@ -29,7 +29,7 @@ const ViewPrepareQuoteListSeller = ({ sellerId, enquiryNumber }) => {
       try {
         const encodedEnquiryNumber = encodeURIComponent(enquiryNumber);
         const response = await getAPI(
-          `/get-location?enquiryNumber=${encodedEnquiryNumber}&sellerId=${sellerId}`,
+          `${process.env.REACT_APP_PROCUREMENT_SERVICE}/get-location?enquiryNumber=${encodedEnquiryNumber}&sellerId=${sellerId}`,
           {},
           true
         );
@@ -90,13 +90,15 @@ const ViewPrepareQuoteListSeller = ({ sellerId, enquiryNumber }) => {
     try {
       const encodedEnquiryNumber = encodeURIComponent(enquiryNumber);
       const response = await getAPI(
-        `prepare-quote?sellerId=${sellerId}&enquiryNumber=${encodedEnquiryNumber}`,
+        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/prepare-quote?sellerId=${sellerId}&enquiryNumber=${encodedEnquiryNumber}`,
         {},
         true
       );
 
       if (!response.hasError && response.data.data) {
         setPreparedQuotes(response.data.data);
+
+        console.log("quote.supplierStatus", response.data.data);
       } else {
         console.error("Invalid response format or error in response");
       }
@@ -130,7 +132,7 @@ const ViewPrepareQuoteListSeller = ({ sellerId, enquiryNumber }) => {
     try {
       const encodedEnquiryNumber = encodeURIComponent(enquiryNumber);
       const response = await putAPI(
-        `/prepare-quote-by-seller?sellerId=${sellerId}&enquiryNumber=${encodedEnquiryNumber}&id=${id}`,
+        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/prepare-quote-by-seller?sellerId=${sellerId}&enquiryNumber=${encodedEnquiryNumber}&id=${id}`,
         formDataToSend,
         {
           "Content-Type": "multipart/form-data",
@@ -209,9 +211,8 @@ const ViewPrepareQuoteListSeller = ({ sellerId, enquiryNumber }) => {
                 <div className="text-end">
                   {preparedQuotes.some(
                     (quote) =>
-                      !isWithinEditTimeframe(quote.createdAt) &&
-                      (quote.supplierStatus === "Quote Requested" ||
-                        quote.supplierStatus === "Quote Submitted")
+                      isWithinEditTimeframe(quote.createdAt) ||
+                      quote.supplierStatus === "Quote Submitted"
                   ) && (
                     <button
                       type="button"
@@ -295,7 +296,7 @@ const ViewPrepareQuoteListSeller = ({ sellerId, enquiryNumber }) => {
                         {preparedQuotes.some(
                           (quote) => quote.igstAmount !== 0
                         ) ? (
-                          <th>IGST Amount</th>
+                          <th>IGST Amount </th>
                         ) : (
                           <></>
                         )}
@@ -303,7 +304,7 @@ const ViewPrepareQuoteListSeller = ({ sellerId, enquiryNumber }) => {
                         <th>Amount Before GST & Discount</th>
                         <th>Discount Amount</th>
                         <th>GST Amount</th>
-                        <th>Total Amount</th>
+                        <th>Total Amount </th>
 
                         {preparedQuotes.some(
                           (quote) =>

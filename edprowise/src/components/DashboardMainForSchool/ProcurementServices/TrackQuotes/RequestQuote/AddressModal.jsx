@@ -39,7 +39,11 @@ const AddressModal = ({ onClose, cart }) => {
     }
 
     try {
-      const response = await getAPI(`/school-profile/${schoolId}`, {}, true);
+      const response = await getAPI(
+        `${process.env.REACT_APP_USER_AND_PROFILE_SERVICE}/school-profile/${schoolId}`,
+        {},
+        true
+      );
 
       if (!response.hasError && response.data && response.data.data) {
         const schoolData = response.data.data;
@@ -169,7 +173,7 @@ const AddressModal = ({ onClose, cart }) => {
 
     try {
       const response = await postAPI(
-        "/request-quote",
+        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/request-quote`,
         formDataToSend,
         { "Content-Type": "multipart/form-data" },
         true

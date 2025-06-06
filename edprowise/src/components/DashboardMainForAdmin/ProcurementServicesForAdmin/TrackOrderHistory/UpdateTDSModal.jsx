@@ -26,7 +26,7 @@ const UpdateTDSModal = ({
 
         try {
           const response = await getAPI(
-            `/tds-amount?enquiryNumber=${encodedEnquiryNumber}&quoteNumber=${encodedQuoteNumber}&sellerId=${sellerId}`
+            `${process.env.REACT_APP_PROCUREMENT_SERVICE}/tds-amount?enquiryNumber=${encodedEnquiryNumber}&quoteNumber=${encodedQuoteNumber}&sellerId=${sellerId}`
           );
           if (!response.hasError && response.data && response.data.data) {
             const tDSAmount = response.data.data;
@@ -70,7 +70,7 @@ const UpdateTDSModal = ({
 
     try {
       const response = await putAPI(
-        `/update-tds?enquiryNumber=${encodedEnquiryNumber}&quoteNumber=${encodedQuoteNumber}&sellerId=${sellerId}`,
+        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/update-tds?enquiryNumber=${encodedEnquiryNumber}&quoteNumber=${encodedQuoteNumber}&sellerId=${sellerId}`,
         dataToSend,
         true
       );

@@ -53,7 +53,7 @@ const ViewQuote = () => {
       const encodedEnquiryNumber = encodeURIComponent(enquiryNumber);
 
       const response = await getAPI(
-        `/submit-quote-by-status?enquiryNumber=${encodedEnquiryNumber}&sellerId=${sellerId}`
+        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/submit-quote-by-status?enquiryNumber=${encodedEnquiryNumber}&sellerId=${sellerId}`
       );
       if (!response.hasError && response.data && response.data.data) {
         setCurrentQuote(response.data.data);
@@ -83,7 +83,7 @@ const ViewQuote = () => {
       const encodedEnquiryNumber = encodeURIComponent(enquiryNumber);
 
       const response = await getAPI(
-        `/generate-quote-pdf-for-buyer?schoolId=${schoolId}&sellerId=${sellerId}&enquiryNumber=${encodedEnquiryNumber}`,
+        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/generate-quote-pdf-for-buyer?schoolId=${schoolId}&sellerId=${sellerId}&enquiryNumber=${encodedEnquiryNumber}`,
         { responseType: "blob" },
         true
       );

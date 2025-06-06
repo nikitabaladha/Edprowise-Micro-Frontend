@@ -38,7 +38,7 @@ const ViewPrepareQuoteListFromSeller = ({ onQuoteUpdated }) => {
         const encodedEnquiryNumber = encodeURIComponent(enquiryNumber);
 
         const response = await getAPI(
-          `/get-location?enquiryNumber=${encodedEnquiryNumber}&sellerId=${sellerId}`,
+          `${process.env.REACT_APP_PROCUREMENT_SERVICE}/get-location?enquiryNumber=${encodedEnquiryNumber}&sellerId=${sellerId}`,
           {},
           true
         );
@@ -94,7 +94,7 @@ const ViewPrepareQuoteListFromSeller = ({ onQuoteUpdated }) => {
       const encodedEnquiryNumber = encodeURIComponent(enquiryNumber);
 
       const response = await getAPI(
-        `prepare-quote?sellerId=${sellerId}&enquiryNumber=${encodedEnquiryNumber}`,
+        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/prepare-quote?sellerId=${sellerId}&enquiryNumber=${encodedEnquiryNumber}`,
         {},
         true
       );
@@ -135,7 +135,7 @@ const ViewPrepareQuoteListFromSeller = ({ onQuoteUpdated }) => {
       const encodedEnquiryNumber = encodeURIComponent(enquiryNumber);
 
       const response = await putAPI(
-        `/prepare-quote?sellerId=${sellerId}&enquiryNumber=${encodedEnquiryNumber}&id=${id}`,
+        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/prepare-quote?sellerId=${sellerId}&enquiryNumber=${encodedEnquiryNumber}&id=${id}`,
         formDataToSend,
         {
           "Content-Type": "multipart/form-data",
@@ -258,7 +258,7 @@ const ViewPrepareQuoteListFromSeller = ({ onQuoteUpdated }) => {
                             [];
                           const firstImage = availableImages[0];
                           const imageUrl = firstImage
-                            ? `${process.env.REACT_APP_API_URL_FOR_IMAGE}${firstImage}`
+                            ? `${process.env.REACT_APP_API_URL_FOR_PROCUREMENT_IMAGE}${firstImage}`
                             : null;
 
                           return (
@@ -548,7 +548,7 @@ const ViewPrepareQuoteListFromSeller = ({ onQuoteUpdated }) => {
                 style={{ height: "300px", overflow: "hidden" }}
               >
                 <img
-                  src={`${process.env.REACT_APP_API_URL_FOR_IMAGE}${selectedQuoteImages[currentImageIndex]}`}
+                  src={`${process.env.REACT_APP_API_URL_FOR_PROCUREMENT_IMAGE}${selectedQuoteImages[currentImageIndex]}`}
                   alt={`Product ${currentImageIndex + 1}`}
                   style={{
                     maxWidth: "95%",

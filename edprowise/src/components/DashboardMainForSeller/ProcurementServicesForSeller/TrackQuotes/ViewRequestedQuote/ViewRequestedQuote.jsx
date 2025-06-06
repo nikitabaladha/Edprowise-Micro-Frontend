@@ -59,7 +59,7 @@ const ViewRequestedQuote = () => {
       try {
         const encodedEnquiryNumber = encodeURIComponent(enquiryNumber);
         const response = await getAPI(
-          `/get-according-to-category-filter/${encodedEnquiryNumber}`,
+          `${process.env.REACT_APP_PROCUREMENT_SERVICE}/get-according-to-category-filter/${encodedEnquiryNumber}`,
           {},
           true
         );
@@ -85,7 +85,7 @@ const ViewRequestedQuote = () => {
 
       try {
         const response = await getAPI(
-          `prepare-quote?sellerId=${sellerId}&enquiryNumber=${encodedEnquiryNumber}`,
+          `${process.env.REACT_APP_PROCUREMENT_SERVICE}/prepare-quote?sellerId=${sellerId}&enquiryNumber=${encodedEnquiryNumber}`,
           {},
           true
         );
@@ -273,7 +273,7 @@ const ViewRequestedQuote = () => {
 
     try {
       const response = await postAPI(
-        "/prepare-quote",
+        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/prepare-quote`,
         formData,
         {
           "Content-Type": "multipart/form-data",
@@ -310,7 +310,7 @@ const ViewRequestedQuote = () => {
     try {
       const encodedEnquiryNumber = encodeURIComponent(enquiryNumber);
       const response = await getAPI(
-        `/quote-proposal?enquiryNumber=${encodedEnquiryNumber}&sellerId=${sellerId}`,
+        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/quote-proposal?enquiryNumber=${encodedEnquiryNumber}&sellerId=${sellerId}`,
         {},
         true
       );
@@ -337,7 +337,7 @@ const ViewRequestedQuote = () => {
     try {
       const encodedEnquiryNumber = encodeURIComponent(enquiryNumber);
       const response = await getAPI(
-        `/get-location?enquiryNumber=${encodedEnquiryNumber}&sellerId=${sellerId}`,
+        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/get-location?enquiryNumber=${encodedEnquiryNumber}&sellerId=${sellerId}`,
         {},
         true
       );
@@ -431,7 +431,7 @@ const ViewRequestedQuote = () => {
                         const firstAvailableImage =
                           product?.productImages?.find((img) => img);
                         const imageUrl = firstAvailableImage
-                          ? `${process.env.REACT_APP_API_URL_FOR_IMAGE}${firstAvailableImage}`
+                          ? `${process.env.REACT_APP_API_URL_FOR_PROCUREMENT_IMAGE}${firstAvailableImage}`
                           : null;
 
                         return (
@@ -556,7 +556,7 @@ const ViewRequestedQuote = () => {
                 style={{ height: "300px", overflow: "hidden" }}
               >
                 <img
-                  src={`${process.env.REACT_APP_API_URL_FOR_IMAGE}${selectedQuoteImages[currentImageIndex]}`}
+                  src={`${process.env.REACT_APP_API_URL_FOR_PROCUREMENT_IMAGE}${selectedQuoteImages[currentImageIndex]}`}
                   alt={`Product ${currentImageIndex + 1}`}
                   style={{
                     maxWidth: "95%",

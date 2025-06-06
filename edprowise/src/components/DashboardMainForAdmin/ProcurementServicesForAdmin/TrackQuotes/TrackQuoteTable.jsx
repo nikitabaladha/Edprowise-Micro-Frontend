@@ -17,7 +17,11 @@ const TrackQuoteTable = () => {
   useEffect(() => {
     const fetchQuoteData = async () => {
       try {
-        const response = await getAPI(`/get-quote-for-admin`, {}, true);
+        const response = await getAPI(
+          `${process.env.REACT_APP_PROCUREMENT_SERVICE}/get-quote-for-admin`,
+          {},
+          true
+        );
         if (
           !response.hasError &&
           response.data &&
@@ -48,7 +52,7 @@ const TrackQuoteTable = () => {
     try {
       const encodedEnquiryNumber = encodeURIComponent(enquiryNumber);
       const response = await getAPI(
-        `/submit-quote/${encodedEnquiryNumber}`,
+        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/submit-quote/${encodedEnquiryNumber}`,
         {},
         true
       );
@@ -96,7 +100,7 @@ const TrackQuoteTable = () => {
     const formattedImages = images.map((img) =>
       img instanceof Blob
         ? URL.createObjectURL(img)
-        : `${process.env.REACT_APP_API_URL_FOR_IMAGE}${img}`
+        : `${process.env.REACT_APP_API_URL_FOR_PROCUREMENT_IMAGE}${img}`
     );
 
     setSelectedImages(formattedImages);
@@ -279,7 +283,7 @@ const TrackQuoteTable = () => {
                                         <img
                                           className="avatar-md"
                                           alt={quote?.subCategoryName}
-                                          src={`${process.env.REACT_APP_API_URL_FOR_IMAGE}${availableImages[0]}`}
+                                          src={`${process.env.REACT_APP_API_URL_FOR_PROCUREMENT_IMAGE}${availableImages[0]}`}
                                         />
                                       </div>
                                     )}

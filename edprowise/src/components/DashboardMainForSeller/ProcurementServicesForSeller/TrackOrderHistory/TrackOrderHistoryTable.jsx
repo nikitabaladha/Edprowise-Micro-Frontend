@@ -40,7 +40,7 @@ const TrackOrderHistoryTable = () => {
 
     try {
       const response = await getAPI(
-        `/order-details-by-seller-id/${sellerId}`,
+        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/order-details-by-seller-id/${sellerId}`,
         {},
         true
       );
@@ -135,7 +135,7 @@ const TrackOrderHistoryTable = () => {
     try {
       const encodedEnquiryNumber = encodeURIComponent(enquiryNumber);
       const response = await putAPI(
-        `/order-progress-status?enquiryNumber=${encodedEnquiryNumber}&&sellerId=${sellerId}`,
+        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/order-progress-status?enquiryNumber=${encodedEnquiryNumber}&&sellerId=${sellerId}`,
         { supplierStatus: newStatus },
         true
       );
@@ -202,7 +202,7 @@ const TrackOrderHistoryTable = () => {
     try {
       const encodedEnquiryNumber = encodeURIComponent(enquiryNumber);
       const response = await getAPI(
-        `/generate-edprowise-invoice-pdf?schoolId=${schoolId}&sellerId=${sellerId}&enquiryNumber=${encodedEnquiryNumber}`,
+        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/generate-edprowise-invoice-pdf?schoolId=${schoolId}&sellerId=${sellerId}&enquiryNumber=${encodedEnquiryNumber}`,
         { responseType: "blob" },
         true
       );
@@ -257,7 +257,7 @@ const TrackOrderHistoryTable = () => {
     try {
       const encodedEnquiryNumber = encodeURIComponent(enquiryNumber);
       const response = await getAPI(
-        `/generate-buyer-invoice-pdf?schoolId=${schoolId}&sellerId=${sellerId}&enquiryNumber=${encodedEnquiryNumber}`,
+        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/generate-buyer-invoice-pdf?schoolId=${schoolId}&sellerId=${sellerId}&enquiryNumber=${encodedEnquiryNumber}`,
         { responseType: "blob" },
         true
       );

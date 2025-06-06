@@ -24,7 +24,7 @@ const UpdateOrderDetailsModal = ({
         try {
           const encodedOrderNumber = encodeURIComponent(orderNumber);
           const response = await getAPI(
-            `/get-by-order-number?orderNumber=${encodedOrderNumber}`
+            `${process.env.REACT_APP_PROCUREMENT_SERVICE}/get-by-order-number?orderNumber=${encodedOrderNumber}`
           );
           if (!response.hasError && response.data && response.data.data) {
             const { actualDeliveryDate } = response.data.data;
@@ -74,7 +74,7 @@ const UpdateOrderDetailsModal = ({
       const encodedOrderNumber = encodeURIComponent(orderNumber);
 
       const response = await putAPI(
-        `/order-details?orderNumber=${encodedOrderNumber}&sellerId`,
+        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/order-details?orderNumber=${encodedOrderNumber}&sellerId`,
         dataToSend,
         true
       );

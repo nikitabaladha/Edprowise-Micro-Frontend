@@ -52,7 +52,7 @@ const RatingModal = ({
       const encodedEnquiryNumber = encodeURIComponent(enquiryNumber);
 
       const response = await putAPI(
-        `/feedback-for-order?sellerId=${sellerId}&enquiryNumber=${encodedEnquiryNumber}&schoolId=${schoolId}`,
+        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/feedback-for-order?sellerId=${sellerId}&enquiryNumber=${encodedEnquiryNumber}&schoolId=${schoolId}`,
         formDataToSend,
         true
       );

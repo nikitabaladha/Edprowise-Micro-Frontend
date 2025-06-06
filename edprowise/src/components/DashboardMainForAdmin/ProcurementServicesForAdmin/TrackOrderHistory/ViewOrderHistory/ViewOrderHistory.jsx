@@ -34,7 +34,7 @@ const ViewOrderHistory = () => {
       const encodedOrderNumber = encodeURIComponent(orderNumber);
 
       const response = await getAPI(
-        `/order-details-by-orderNumber/${encodedOrderNumber}`,
+        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/order-details-by-orderNumber/${encodedOrderNumber}`,
         {},
         true
       );
@@ -72,7 +72,7 @@ const ViewOrderHistory = () => {
       const encodedEnquiryNumber = encodeURIComponent(enquiryNumber);
 
       const response = await getAPI(
-        `/get-quote/${encodedEnquiryNumber}`,
+        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/get-quote/${encodedEnquiryNumber}`,
         {},
         true
       );
@@ -92,7 +92,7 @@ const ViewOrderHistory = () => {
       const encodedOrderNumber = encodeURIComponent(orderNumber);
 
       const response = await getAPI(
-        `/order-from-buyer/${encodedOrderNumber}/${sellerId}`,
+        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/order-from-buyer/${encodedOrderNumber}/${sellerId}`,
         {},
         true
       );
@@ -154,7 +154,7 @@ const ViewOrderHistory = () => {
       const encodedEnquiryNumber = encodeURIComponent(enquiryNumber);
 
       const response = await getAPI(
-        `/generate-edprowise-invoice-pdf?schoolId=${schoolId}&sellerId=${sellerId}&enquiryNumber=${encodedEnquiryNumber}`,
+        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/generate-edprowise-invoice-pdf?schoolId=${schoolId}&sellerId=${sellerId}&enquiryNumber=${encodedEnquiryNumber}`,
         { responseType: "blob" },
         true
       );
@@ -198,7 +198,7 @@ const ViewOrderHistory = () => {
       const encodedEnquiryNumber = encodeURIComponent(enquiryNumber);
 
       const response = await getAPI(
-        `/generate-buyer-invoice-pdf?schoolId=${schoolId}&sellerId=${sellerId}&enquiryNumber=${encodedEnquiryNumber}`,
+        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/generate-buyer-invoice-pdf?schoolId=${schoolId}&sellerId=${sellerId}&enquiryNumber=${encodedEnquiryNumber}`,
         { responseType: "blob" },
         true
       );
@@ -684,7 +684,7 @@ const ViewOrderHistory = () => {
                           const firstAvailableImage =
                             product?.productImages?.find((img) => img);
                           const imageUrl = firstAvailableImage
-                            ? `${process.env.REACT_APP_API_URL_FOR_IMAGE}${firstAvailableImage}`
+                            ? `${process.env.REACT_APP_API_URL_FOR_PROCUREMENT_IMAGE}${firstAvailableImage}`
                             : null;
 
                           return (
@@ -794,7 +794,7 @@ const ViewOrderHistory = () => {
                           const firstAvailableOrderImage =
                             order?.cartImages?.find((img) => img);
                           const orderImageUrl = firstAvailableOrderImage
-                            ? `${process.env.REACT_APP_API_URL_FOR_IMAGE}${firstAvailableOrderImage}`
+                            ? `${process.env.REACT_APP_API_URL_FOR_PROCUREMENT_IMAGE}${firstAvailableOrderImage}`
                             : null;
 
                           return (
@@ -868,7 +868,7 @@ const ViewOrderHistory = () => {
                 style={{ height: "300px", overflow: "hidden" }}
               >
                 <img
-                  src={`${process.env.REACT_APP_API_URL_FOR_IMAGE}${selectedImages[currentImageIndex]}`}
+                  src={`${process.env.REACT_APP_API_URL_FOR_PROCUREMENT_IMAGE}${selectedImages[currentImageIndex]}`}
                   alt={`Product ${currentImageIndex + 1}`}
                   style={{
                     maxWidth: "95%",
@@ -933,7 +933,7 @@ const ViewOrderHistory = () => {
                 style={{ height: "300px", overflow: "hidden" }}
               >
                 <img
-                  src={`${process.env.REACT_APP_API_URL_FOR_IMAGE}${selectedOrderImages[currentOrderImageIndex]}`}
+                  src={`${process.env.REACT_APP_API_URL_FOR_PROCUREMENT_IMAGE}${selectedOrderImages[currentOrderImageIndex]}`}
                   alt={`Product ${currentOrderImageIndex + 1}`}
                   style={{
                     maxWidth: "95%",

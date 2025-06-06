@@ -31,7 +31,7 @@ const ViewPrepareQuoteListFromSeller = () => {
       const encodedEnquiryNumber = encodeURIComponent(enquiryNumber);
 
       const response = await getAPI(
-        `prepare-quote?sellerId=${sellerId}&enquiryNumber=${encodedEnquiryNumber}`,
+        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/prepare-quote?sellerId=${sellerId}&enquiryNumber=${encodedEnquiryNumber}`,
         {},
         true
       );
@@ -163,7 +163,7 @@ const ViewPrepareQuoteListFromSeller = () => {
                             [];
                           const firstImage = availableImages[0];
                           const imageUrl = firstImage
-                            ? `${process.env.REACT_APP_API_URL_FOR_IMAGE}${firstImage}`
+                            ? `${process.env.REACT_APP_API_URL_FOR_PROCUREMENT_IMAGE}${firstImage}`
                             : null;
 
                           return (
@@ -274,7 +274,7 @@ const ViewPrepareQuoteListFromSeller = () => {
                 style={{ height: "300px", overflow: "hidden" }}
               >
                 <img
-                  src={`${process.env.REACT_APP_API_URL_FOR_IMAGE}${selectedQuoteImages[currentImageIndex]}`}
+                  src={`${process.env.REACT_APP_API_URL_FOR_PROCUREMENT_IMAGE}${selectedQuoteImages[currentImageIndex]}`}
                   alt={`Product ${currentImageIndex + 1}`}
                   style={{
                     maxWidth: "95%",

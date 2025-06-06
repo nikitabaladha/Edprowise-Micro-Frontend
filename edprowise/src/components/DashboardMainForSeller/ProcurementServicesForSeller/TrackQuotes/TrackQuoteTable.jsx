@@ -18,7 +18,11 @@ const TrackQuoteTable = ({}) => {
   useEffect(() => {
     const fetchQuoteData = async () => {
       try {
-        const response = await getAPI(`/get-quote-list-for-seller`, {}, true);
+        const response = await getAPI(
+          `${process.env.REACT_APP_PROCUREMENT_SERVICE}/get-quote-list-for-seller`,
+          {},
+          true
+        );
         if (
           !response.hasError &&
           response.data &&
@@ -55,7 +59,7 @@ const TrackQuoteTable = ({}) => {
       const encodedEnquiryNumber = encodeURIComponent(enquiryNumber);
 
       const response = await getAPI(
-        `/quote-proposal?enquiryNumber=${encodedEnquiryNumber}&sellerId=${sellerId}`,
+        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/quote-proposal?enquiryNumber=${encodedEnquiryNumber}&sellerId=${sellerId}`,
         {},
         true
       );
@@ -139,7 +143,7 @@ const TrackQuoteTable = ({}) => {
 
     try {
       const response = await getAPI(
-        `/generate-quote-pdf?schoolId=${schoolId}&sellerId=${sellerId}&enquiryNumber=${encodedEnquiryNumber}`,
+        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/generate-quote-pdf?schoolId=${schoolId}&sellerId=${sellerId}&enquiryNumber=${encodedEnquiryNumber}`,
         { responseType: "blob" },
         true
       );
@@ -178,7 +182,7 @@ const TrackQuoteTable = ({}) => {
     const formattedImages = images.map((img) =>
       img instanceof Blob
         ? URL.createObjectURL(img)
-        : `${process.env.REACT_APP_API_URL_FOR_IMAGE}${img}`
+        : `${process.env.REACT_APP_API_URL_FOR_PROCUREMENT_IMAGE}${img}`
     );
 
     setSelectedImages(formattedImages);
@@ -313,7 +317,7 @@ const TrackQuoteTable = ({}) => {
                                         <img
                                           className="avatar-md"
                                           alt={quote?.subCategoryName}
-                                          src={`${process.env.REACT_APP_API_URL_FOR_IMAGE}${availableImages[0]}`}
+                                          src={`${process.env.REACT_APP_API_URL_FOR_PROCUREMENT_IMAGE}${availableImages[0]}`}
                                         />
                                       </div>
                                     )}
@@ -458,15 +462,6 @@ const TrackQuoteTable = ({}) => {
         </div>
       </div>
 
-      {/* <Modal show={showModal} onHide={() => setShowModal(false)} centered>
-        <Modal.Body className="text-center">
-          <img
-            src={selectedImage}
-            alt="Preview"
-            style={{ maxWidth: "100%", maxHeight: "80vh" }}
-          />
-        </Modal.Body>
-      </Modal> */}
       <Modal show={showModal} onHide={() => setShowModal(false)} centered>
         <Modal.Body
           className="text-center p-0 position-relative"

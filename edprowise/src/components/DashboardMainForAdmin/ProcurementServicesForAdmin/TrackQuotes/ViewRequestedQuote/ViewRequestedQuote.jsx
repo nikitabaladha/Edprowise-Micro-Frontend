@@ -39,7 +39,7 @@ const ViewRequestedQuote = () => {
     try {
       const encodedEnquiryNumber = encodeURIComponent(enquiryNumber);
       const response = await getAPI(
-        `/get-quote/${encodedEnquiryNumber}`,
+        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/get-quote/${encodedEnquiryNumber}`,
         {},
         true
       );
@@ -67,7 +67,7 @@ const ViewRequestedQuote = () => {
     try {
       const encodedEnquiryNumber = encodeURIComponent(enquiryNumber);
       const response = await getAPI(
-        `/submit-quote/${encodedEnquiryNumber}`,
+        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/submit-quote/${encodedEnquiryNumber}`,
         {},
         true
       );
@@ -158,7 +158,7 @@ const ViewRequestedQuote = () => {
                           const firstAvailableImage =
                             quote?.productImages?.find((img) => img);
                           const imageUrl = firstAvailableImage
-                            ? `${process.env.REACT_APP_API_URL_FOR_IMAGE}${firstAvailableImage}`
+                            ? `${process.env.REACT_APP_API_URL_FOR_PROCUREMENT_IMAGE}${firstAvailableImage}`
                             : null;
 
                           return (
@@ -261,7 +261,7 @@ const ViewRequestedQuote = () => {
                 style={{ height: "300px", overflow: "hidden" }}
               >
                 <img
-                  src={`${process.env.REACT_APP_API_URL_FOR_IMAGE}${selectedImages[currentImageIndex]}`}
+                  src={`${process.env.REACT_APP_API_URL_FOR_PROCUREMENT_IMAGE}${selectedImages[currentImageIndex]}`}
                   alt={`Product ${currentImageIndex + 1}`}
                   style={{
                     maxWidth: "95%",
