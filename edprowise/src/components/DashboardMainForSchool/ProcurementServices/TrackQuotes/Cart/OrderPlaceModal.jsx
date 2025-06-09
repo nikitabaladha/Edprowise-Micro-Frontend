@@ -39,7 +39,7 @@ const OrderPlaceModal = ({
       const encodedEnquiryNumber = encodeURIComponent(enquiryNumber);
 
       const response = await getAPI(
-        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/get-quote-request/${encodedEnquiryNumber}`,
+        `${process.env.REACT_APP_PROCUREMENT_QUOTE_REQUEST_SERVICE}/get-quote-request/${encodedEnquiryNumber}`,
         {},
         true
       );
@@ -167,7 +167,7 @@ const OrderPlaceModal = ({
 
     try {
       const response = await postAPI(
-        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/order-from-buyer`,
+        `${process.env.REACT_APP_PROCUREMENT_ORDER_SERVICE}/order-from-buyer`,
         formDataToSend,
         true
       );

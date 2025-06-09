@@ -32,7 +32,7 @@ const ReasonModal = ({
       const encodedEnquiryNumber = encodeURIComponent(enquiryNumber);
 
       const response = await putAPI(
-        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/reject-comment-from-buyer?sellerId=${sellerId}&enquiryNumber=${encodedEnquiryNumber}`,
+        `${process.env.REACT_APP_PROCUREMENT_QUOTE_PROPOSAL_SERVICE}/reject-comment-from-buyer?sellerId=${sellerId}&enquiryNumber=${encodedEnquiryNumber}`,
         formDataToSend,
         true
       );

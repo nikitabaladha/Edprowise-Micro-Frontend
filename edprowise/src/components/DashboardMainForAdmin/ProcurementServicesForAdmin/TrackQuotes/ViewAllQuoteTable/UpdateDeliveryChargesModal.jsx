@@ -22,7 +22,7 @@ const UpdateDeliveryChargesModal = ({
         try {
           const encodedEnquiryNumber = encodeURIComponent(enquiryNumber);
           const response = await getAPI(
-            `${process.env.REACT_APP_PROCUREMENT_SERVICE}/submit-quote?enquiryNumber=${encodedEnquiryNumber}&sellerId=${sellerId}`
+            `${process.env.REACT_APP_PROCUREMENT_QUOTE_PROPOSAL_SERVICE}/submit-quote?enquiryNumber=${encodedEnquiryNumber}&sellerId=${sellerId}`
           );
           if (!response.hasError && response.data && response.data.data) {
             const { deliveryCharges } = response.data.data;
@@ -67,7 +67,7 @@ const UpdateDeliveryChargesModal = ({
       const encodedEnquiryNumber = encodeURIComponent(enquiryNumber);
 
       const response = await putAPI(
-        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/submit-quote-update-delivery-charges?enquiryNumber=${encodedEnquiryNumber}&sellerId=${sellerId}`,
+        `${process.env.REACT_APP_PROCUREMENT_QUOTE_PROPOSAL_SERVICE}/submit-quote-update-delivery-charges?enquiryNumber=${encodedEnquiryNumber}&sellerId=${sellerId}`,
         dataToSend,
         true
       );

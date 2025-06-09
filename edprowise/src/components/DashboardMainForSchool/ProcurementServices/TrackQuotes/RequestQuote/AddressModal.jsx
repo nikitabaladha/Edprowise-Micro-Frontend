@@ -173,7 +173,7 @@ const AddressModal = ({ onClose, cart }) => {
 
     try {
       const response = await postAPI(
-        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/request-quote`,
+        `${process.env.REACT_APP_PROCUREMENT_QUOTE_REQUEST_SERVICE}/request-quote`,
         formDataToSend,
         { "Content-Type": "multipart/form-data" },
         true

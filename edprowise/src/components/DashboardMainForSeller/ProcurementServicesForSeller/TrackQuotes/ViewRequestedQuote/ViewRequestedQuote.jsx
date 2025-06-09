@@ -59,7 +59,7 @@ const ViewRequestedQuote = () => {
       try {
         const encodedEnquiryNumber = encodeURIComponent(enquiryNumber);
         const response = await getAPI(
-          `${process.env.REACT_APP_PROCUREMENT_SERVICE}/get-according-to-category-filter/${encodedEnquiryNumber}`,
+          `${process.env.REACT_APP_PROCUREMENT_QUOTE_REQUEST_SERVICE}/get-according-to-category-filter/${encodedEnquiryNumber}`,
           {},
           true
         );
@@ -85,7 +85,7 @@ const ViewRequestedQuote = () => {
 
       try {
         const response = await getAPI(
-          `${process.env.REACT_APP_PROCUREMENT_SERVICE}/prepare-quote?sellerId=${sellerId}&enquiryNumber=${encodedEnquiryNumber}`,
+          `${process.env.REACT_APP_PROCUREMENT_QUOTE_PROPOSAL_SERVICE}/prepare-quote?sellerId=${sellerId}&enquiryNumber=${encodedEnquiryNumber}`,
           {},
           true
         );
@@ -273,7 +273,7 @@ const ViewRequestedQuote = () => {
 
     try {
       const response = await postAPI(
-        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/prepare-quote`,
+        `${process.env.REACT_APP_PROCUREMENT_QUOTE_PROPOSAL_SERVICE}/prepare-quote`,
         formData,
         {
           "Content-Type": "multipart/form-data",
@@ -310,7 +310,7 @@ const ViewRequestedQuote = () => {
     try {
       const encodedEnquiryNumber = encodeURIComponent(enquiryNumber);
       const response = await getAPI(
-        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/quote-proposal?enquiryNumber=${encodedEnquiryNumber}&sellerId=${sellerId}`,
+        `${process.env.REACT_APP_PROCUREMENT_QUOTE_PROPOSAL_SERVICE}/quote-proposal?enquiryNumber=${encodedEnquiryNumber}&sellerId=${sellerId}`,
         {},
         true
       );
@@ -337,7 +337,7 @@ const ViewRequestedQuote = () => {
     try {
       const encodedEnquiryNumber = encodeURIComponent(enquiryNumber);
       const response = await getAPI(
-        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/get-location?enquiryNumber=${encodedEnquiryNumber}&sellerId=${sellerId}`,
+        `${process.env.REACT_APP_PROCUREMENT_QUOTE_REQUEST_SERVICE}/get-location?enquiryNumber=${encodedEnquiryNumber}&sellerId=${sellerId}`,
         {},
         true
       );

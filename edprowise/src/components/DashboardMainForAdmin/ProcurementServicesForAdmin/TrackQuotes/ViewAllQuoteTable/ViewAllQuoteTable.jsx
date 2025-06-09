@@ -43,7 +43,7 @@ const ViewAllQuoteTable = () => {
       const encodedEnquiryNumber = encodeURIComponent(enquiryNumber);
 
       const response = await getAPI(
-        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/submit-quote/${encodedEnquiryNumber}`,
+        `${process.env.REACT_APP_PROCUREMENT_QUOTE_PROPOSAL_SERVICE}/submit-quote/${encodedEnquiryNumber}`,
         {},
         true
       );
@@ -61,7 +61,7 @@ const ViewAllQuoteTable = () => {
   const handleVenderStatusUpdate = async (sellerId, newStatus) => {
     try {
       const response = await putAPI(
-        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/update-vender-status?enquiryNumber=${enquiryNumber}&sellerId=${sellerId}`,
+        `${process.env.REACT_APP_PROCUREMENT_QUOTE_PROPOSAL_SERVICE}/update-vender-status?enquiryNumber=${enquiryNumber}&sellerId=${sellerId}`,
         { venderStatus: newStatus },
         true
       );
@@ -115,7 +115,7 @@ const ViewAllQuoteTable = () => {
 
     try {
       const response = await getAPI(
-        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/generate-quote-pdf?schoolId=${schoolId}&sellerId=${sellerId}&enquiryNumber=${enquiryNumber}`,
+        `${process.env.REACT_APP_PROCUREMENT_QUOTE_PROPOSAL_SERVICE}/generate-quote-pdf?schoolId=${schoolId}&sellerId=${sellerId}&enquiryNumber=${enquiryNumber}`,
         { responseType: "blob" },
         true
       );

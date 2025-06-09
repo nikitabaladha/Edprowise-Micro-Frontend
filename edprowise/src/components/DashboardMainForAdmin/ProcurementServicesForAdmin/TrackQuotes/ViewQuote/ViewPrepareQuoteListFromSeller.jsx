@@ -38,7 +38,7 @@ const ViewPrepareQuoteListFromSeller = ({ onQuoteUpdated }) => {
         const encodedEnquiryNumber = encodeURIComponent(enquiryNumber);
 
         const response = await getAPI(
-          `${process.env.REACT_APP_PROCUREMENT_SERVICE}/get-location?enquiryNumber=${encodedEnquiryNumber}&sellerId=${sellerId}`,
+          `${process.env.REACT_APP_PROCUREMENT_QUOTE_REQUEST_SERVICE}/get-location?enquiryNumber=${encodedEnquiryNumber}&sellerId=${sellerId}`,
           {},
           true
         );
@@ -94,7 +94,7 @@ const ViewPrepareQuoteListFromSeller = ({ onQuoteUpdated }) => {
       const encodedEnquiryNumber = encodeURIComponent(enquiryNumber);
 
       const response = await getAPI(
-        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/prepare-quote?sellerId=${sellerId}&enquiryNumber=${encodedEnquiryNumber}`,
+        `${process.env.REACT_APP_PROCUREMENT_QUOTE_PROPOSAL_SERVICE}/prepare-quote?sellerId=${sellerId}&enquiryNumber=${encodedEnquiryNumber}`,
         {},
         true
       );
@@ -135,7 +135,7 @@ const ViewPrepareQuoteListFromSeller = ({ onQuoteUpdated }) => {
       const encodedEnquiryNumber = encodeURIComponent(enquiryNumber);
 
       const response = await putAPI(
-        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/prepare-quote?sellerId=${sellerId}&enquiryNumber=${encodedEnquiryNumber}&id=${id}`,
+        `${process.env.REACT_APP_PROCUREMENT_QUOTE_PROPOSAL_SERVICE}/prepare-quote?sellerId=${sellerId}&enquiryNumber=${encodedEnquiryNumber}&id=${id}`,
         formDataToSend,
         {
           "Content-Type": "multipart/form-data",

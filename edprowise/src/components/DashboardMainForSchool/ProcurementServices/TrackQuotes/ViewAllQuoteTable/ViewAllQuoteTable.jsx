@@ -58,7 +58,7 @@ const ViewAllQuoteTable = () => {
       const encodedEnquiryNumber = encodeURIComponent(enquiryNumber);
 
       const response = await getAPI(
-        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/submit-quote-by-status/${encodedEnquiryNumber}`,
+        `${process.env.REACT_APP_PROCUREMENT_QUOTE_PROPOSAL_SERVICE}/submit-quote-by-status/${encodedEnquiryNumber}`,
         {},
         true
       );
@@ -80,7 +80,7 @@ const ViewAllQuoteTable = () => {
       const encodedEnquiryNumber = encodeURIComponent(enquiryNumber);
 
       const preparedQuote = await getAPI(
-        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/prepare-quote?sellerId=${quote.sellerId}&enquiryNumber=${encodedEnquiryNumber}`,
+        `${process.env.REACT_APP_PROCUREMENT_QUOTE_PROPOSAL_SERVICE}/prepare-quote?sellerId=${quote.sellerId}&enquiryNumber=${encodedEnquiryNumber}`,
         {},
         true
       );
@@ -95,7 +95,7 @@ const ViewAllQuoteTable = () => {
       }));
 
       const response = await postAPI(
-        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/cart`,
+        `${process.env.REACT_APP_PROCUREMENT_CART_SERVICE}/cart`,
         { enquiryNumber, products: cartData },
         true
       );
@@ -120,7 +120,7 @@ const ViewAllQuoteTable = () => {
       const encodedEnquiryNumber = encodeURIComponent(enquiryNumber);
 
       const response = await getAPI(
-        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/cart?enquiryNumber=${encodedEnquiryNumber}`,
+        `${process.env.REACT_APP_PROCUREMENT_CART_SERVICE}/cart?enquiryNumber=${encodedEnquiryNumber}`,
         {},
         true
       );
@@ -196,7 +196,7 @@ const ViewAllQuoteTable = () => {
       const encodedEnquiryNumber = encodeURIComponent(enquiryNumber);
 
       const response = await getAPI(
-        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/generate-quote-pdf-for-buyer?schoolId=${schoolId}&sellerId=${sellerId}&enquiryNumber=${encodedEnquiryNumber}`,
+        `${process.env.REACT_APP_PROCUREMENT_QUOTE_PROPOSAL_SERVICE}/generate-quote-pdf-for-buyer?schoolId=${schoolId}&sellerId=${sellerId}&enquiryNumber=${encodedEnquiryNumber}`,
         { responseType: "blob" },
         true
       );

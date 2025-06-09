@@ -12,7 +12,7 @@ const MainCategoryTable = () => {
   const fetchSubCategoryData = async () => {
     try {
       const response = await getAPI(
-        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/sub-category`,
+        `${process.env.REACT_APP_PROCUREMENT_CATEGORY_SERVICE}/sub-category`,
         {},
         true
       );

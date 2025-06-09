@@ -19,7 +19,7 @@ const TrackQuoteTable = ({}) => {
     const fetchQuoteData = async () => {
       try {
         const response = await getAPI(
-          `${process.env.REACT_APP_PROCUREMENT_SERVICE}/get-quote-list-for-school`,
+          `${process.env.REACT_APP_PROCUREMENT_QUOTE_REQUEST_SERVICE}/get-quote-list-for-school`,
           {},
           true
         );
@@ -55,7 +55,7 @@ const TrackQuoteTable = ({}) => {
       const encodedEnquiryNumber = encodeURIComponent(enquiryNumber);
 
       const response = await getAPI(
-        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/submit-quote-by-status/${encodedEnquiryNumber}`,
+        `${process.env.REACT_APP_PROCUREMENT_QUOTE_PROPOSAL_SERVICE}/submit-quote-by-status/${encodedEnquiryNumber}`,
         {},
         true
       );

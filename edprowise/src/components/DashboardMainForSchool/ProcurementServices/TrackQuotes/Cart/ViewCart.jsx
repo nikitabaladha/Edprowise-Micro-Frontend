@@ -37,7 +37,7 @@ const ViewCart = () => {
       const encodedEnquiryNumber = encodeURIComponent(enquiryNumber);
 
       const response = await getAPI(
-        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/cart?enquiryNumber=${encodedEnquiryNumber}`,
+        `${process.env.REACT_APP_PROCUREMENT_CART_SERVICE}/cart?enquiryNumber=${encodedEnquiryNumber}`,
         {},
         true
       );

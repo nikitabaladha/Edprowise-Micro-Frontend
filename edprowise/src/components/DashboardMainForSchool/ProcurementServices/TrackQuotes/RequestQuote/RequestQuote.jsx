@@ -183,7 +183,7 @@ const RequestQuote = () => {
     const fetchCategories = async () => {
       try {
         const response = await getAPI(
-          `${process.env.REACT_APP_PROCUREMENT_SERVICE}/category`,
+          `${process.env.REACT_APP_PROCUREMENT_CATEGORY_SERVICE}/category`,
           {},
           true
         );
@@ -210,7 +210,7 @@ const RequestQuote = () => {
     if (selectedCategoryId) {
       try {
         const response = await getAPI(
-          `${process.env.REACT_APP_PROCUREMENT_SERVICE}/sub-category/${selectedCategoryId}`,
+          `${process.env.REACT_APP_PROCUREMENT_CATEGORY_SERVICE}/sub-category/${selectedCategoryId}`,
           {},
           true
         );

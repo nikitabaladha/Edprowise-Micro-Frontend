@@ -40,19 +40,20 @@ const DELETE_CONFIG = {
   },
   cart: {
     getEndpoint: ({ enquiryNumber, sellerId }) =>
-      `/cart?enquiryNumber=${enquiryNumber}&sellerId=${sellerId}`,
+      `${process.env.REACT_APP_PROCUREMENT_CART_SERVICE}/cart?enquiryNumber=${enquiryNumber}&sellerId=${sellerId}`,
     successMessage: "Cart successfully deleted!",
     errorMessage: "Failed to delete Cart.",
   },
   subCategory: {
     getEndpoint: (id) =>
-      `${process.env.REACT_APP_PROCUREMENT_SERVICE}/sub-category/${id}`,
+      `${process.env.REACT_APP_PROCUREMENT_CATEGORY_SERVICE}/sub-category/${id}`,
     successMessage: "SubCategory data successfully deleted!",
     errorMessage: "Failed to delete Subcategory.",
     idKey: "id",
   },
   singleCart: {
-    getEndpoint: (id) => `/delete-by-cart-id/${id}`,
+    getEndpoint: (id) =>
+      `${process.env.REACT_APP_PROCUREMENT_CART_SERVICE}/delete-by-cart-id/${id}`,
     successMessage: "Cart data successfully deleted!",
     errorMessage: "Failed to delete Cart.",
     idKey: "id",

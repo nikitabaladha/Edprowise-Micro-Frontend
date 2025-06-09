@@ -82,7 +82,7 @@ const AddNewSeller = () => {
     const fetchCategories = async () => {
       try {
         const response = await getAPI(
-          `${process.env.REACT_APP_PROCUREMENT_SERVICE}/category`,
+          `${process.env.REACT_APP_PROCUREMENT_CATEGORY_SERVICE}/category`,
           {},
           true
         );
@@ -103,7 +103,7 @@ const AddNewSeller = () => {
 
     try {
       const response = await getAPI(
-        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/sub-category/${categoryId}`,
+        `${process.env.REACT_APP_PROCUREMENT_CATEGORY_SERVICE}/sub-category/${categoryId}`,
         {},
         true
       );
