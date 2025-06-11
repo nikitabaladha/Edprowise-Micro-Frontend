@@ -29,7 +29,7 @@ const TrackOrderHistoryTable = () => {
   const fetchOrderData = async () => {
     try {
       const response = await getAPI(
-        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/order-details`,
+        `${process.env.REACT_APP_PROCUREMENT_ORDER_SERVICE}/order-details`,
         {},
         true
       );
@@ -90,7 +90,7 @@ const TrackOrderHistoryTable = () => {
       const encodedEnquiryNumber = encodeURIComponent(enquiryNumber);
 
       const response = await putAPI(
-        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/update-order-status?enquiryNumber=${encodedEnquiryNumber}&sellerId=${sellerId}`,
+        `${process.env.REACT_APP_PROCUREMENT_ORDER_SERVICE}/update-order-status?enquiryNumber=${encodedEnquiryNumber}&sellerId=${sellerId}`,
         { orderStatus: newStatus },
         true
       );
@@ -150,7 +150,7 @@ const TrackOrderHistoryTable = () => {
 
     try {
       const response = await putAPI(
-        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/cancel-order-by-edprowise?enquiryNumber=${encodedEnquiryNumber}&sellerId=${sellerId}&schoolId=${schoolId}`,
+        `${process.env.REACT_APP_PROCUREMENT_ORDER_SERVICE}/cancel-order-by-edprowise?enquiryNumber=${encodedEnquiryNumber}&sellerId=${sellerId}&schoolId=${schoolId}`,
         { edprowiseStatus: newStatus },
         true
       );

@@ -28,7 +28,7 @@ const SchoolDashboardRecentOrders = () => {
 
     try {
       const response = await getAPI(
-        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/order-details-by-school-id/${schoolId}`,
+        `${process.env.REACT_APP_PROCUREMENT_ORDER_SERVICE}/order-details-by-school-id/${schoolId}`,
         {},
         true
       );

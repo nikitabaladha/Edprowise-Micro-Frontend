@@ -56,7 +56,7 @@ const ViewOrderHistory = () => {
       try {
         const encodedOrderNumber = encodeURIComponent(orderNumber);
         const response = await getAPI(
-          `${process.env.REACT_APP_PROCUREMENT_SERVICE}/order-details-by-orderNumber/${encodedOrderNumber}`,
+          `${process.env.REACT_APP_PROCUREMENT_ORDER_SERVICE}/order-details-by-orderNumber/${encodedOrderNumber}`,
           {},
           true
         );
@@ -84,7 +84,7 @@ const ViewOrderHistory = () => {
         const encodedEnquiryNumber = encodeURIComponent(enquiryNumber);
         console.log("Fetching quote for enquiry:", enquiryNumber);
         const response = await getAPI(
-          `${process.env.REACT_APP_PROCUREMENT_SERVICE}/get-according-to-category-filter/${encodedEnquiryNumber}`,
+          `${process.env.REACT_APP_PROCUREMENT_QUOTE_REQUEST_SERVICE}/get-according-to-category-filter/${encodedEnquiryNumber}`,
           {},
           true
         );
@@ -111,7 +111,7 @@ const ViewOrderHistory = () => {
       try {
         const encodedOrderNumber = encodeURIComponent(orderNumber);
         const response = await getAPI(
-          `${process.env.REACT_APP_PROCUREMENT_SERVICE}/order-from-buyer/${encodedOrderNumber}/${sellerId}`,
+          `${process.env.REACT_APP_PROCUREMENT_ORDER_SERVICE}/order-from-buyer/${encodedOrderNumber}/${sellerId}`,
           {},
           true
         );

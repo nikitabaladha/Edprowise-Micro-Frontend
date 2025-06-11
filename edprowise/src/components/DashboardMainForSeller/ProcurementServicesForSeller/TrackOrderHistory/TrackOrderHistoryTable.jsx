@@ -40,7 +40,7 @@ const TrackOrderHistoryTable = () => {
 
     try {
       const response = await getAPI(
-        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/order-details-by-seller-id/${sellerId}`,
+        `${process.env.REACT_APP_PROCUREMENT_ORDER_SERVICE}/order-details-by-seller-id/${sellerId}`,
         {},
         true
       );
@@ -135,7 +135,7 @@ const TrackOrderHistoryTable = () => {
     try {
       const encodedEnquiryNumber = encodeURIComponent(enquiryNumber);
       const response = await putAPI(
-        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/order-progress-status?enquiryNumber=${encodedEnquiryNumber}&&sellerId=${sellerId}`,
+        `${process.env.REACT_APP_PROCUREMENT_ORDER_SERVICE}/order-progress-status?enquiryNumber=${encodedEnquiryNumber}&&sellerId=${sellerId}`,
         { supplierStatus: newStatus },
         true
       );

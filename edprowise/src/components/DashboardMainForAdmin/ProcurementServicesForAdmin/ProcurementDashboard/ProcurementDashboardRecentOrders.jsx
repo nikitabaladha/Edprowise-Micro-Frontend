@@ -22,7 +22,7 @@ const TrackOrderHistoryTable = () => {
   const fetchOrderData = async () => {
     try {
       const response = await getAPI(
-        `${process.env.REACT_APP_PROCUREMENT_SERVICE}/order-details`,
+        `${process.env.REACT_APP_PROCUREMENT_ORDER_SERVICE}/order-details`,
         {},
         true
       );
